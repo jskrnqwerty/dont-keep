@@ -23,17 +23,13 @@ const HeaderBar = ({ open, handleDrawerToggle }) => {
           color="inherit"
           aria-label="open drawer"
           onClick={handleDrawerToggle}
-          edge="start"
-          sx={{
-            marginRight: 1,
-            // ...(open && { display: "" }),
-          }}
+          // edge="start"
+          sx={{ marginRight: 1 }}
         >
           <MenuIcon />
         </IconButton>
         <Typography
           variant="h6"
-          noWrap
           component="div"
         >
           Keep

@@ -1,12 +1,11 @@
-import { useState } from "react";
+import { useContext } from "react";
 import { styled } from "@mui/material/styles";
 import Box from "@mui/material/Box";
 import MuiDrawer from "@mui/material/Drawer";
-import Typography from "@mui/material/Typography";
 //component imports
-import HeaderBar from "../header-bar/HeaderBar";
 import DrawerList from "./DrawerList";
 import DrawerHeader from "./DrawerHeader";
+import { OpenStateContext } from "../context/OpenStateProvider";
 
 export const drawerWidth = 240;
 
@@ -49,35 +48,24 @@ const DrawerStyled = styled(MuiDrawer, {
 }));
 
 const Drawer = () => {
-  const [open, setOpen] = useState(false);
+  // const [open, setOpen] = useState(false);
 
-  const handleDrawerToggle = () => {
-    setOpen((prevState) => !prevState);
-  };
+  // const handleDrawerToggle = () => {
+  //   setOpen((prevState) => !prevState);
+  // };
+
+  // handles drawer status which is then used by the HeaderBar sitting at <Home />
+  const { open, handleDrawerToggle } = useContext(OpenStateContext);
 
   return (
     <Box sx={{ display: "flex" }}>
-      <HeaderBar
-        open={open}
-        handleDrawerToggle={handleDrawerToggle}
-      />
-
       <DrawerStyled
         variant="permanent"
         open={open}
       >
         <DrawerHeader handleDrawerToggle={handleDrawerToggle} />
-
         <DrawerList open={open} />
       </DrawerStyled>
-      <Box
-        component="main"
-        sx={{ flexGrow: 1, p: 3 }}
-      >
-        <DrawerHeader />
-
-        <Typography paragraph>CreateNotes and Notes go here.</Typography>
-      </Box>
     </Box>
   );
 };
