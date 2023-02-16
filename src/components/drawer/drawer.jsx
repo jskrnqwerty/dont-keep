@@ -5,7 +5,7 @@ import MuiDrawer from "@mui/material/Drawer";
 //component imports
 import DrawerList from "./DrawerList";
 import DrawerHeader from "./DrawerHeader";
-import { OpenStateContext } from "../context/OpenStateProvider";
+import { DrawerStateContext } from "../context/DrawerStateProvider";
 
 export const drawerWidth = 240;
 
@@ -51,7 +51,7 @@ const DrawerStyled = styled(MuiDrawer, {
 
 const Drawer = () => {
   // handles drawer status which is then used by the HeaderBar sitting at <Home />
-  const { open, handleDrawerToggle } = useContext(OpenStateContext);
+  const { open, handleDrawerToggle } = useContext(DrawerStateContext);
 
   return (
     <Box sx={{ display: "flex" }}>

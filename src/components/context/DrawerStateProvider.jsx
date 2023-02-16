@@ -2,19 +2,19 @@
 
 import { createContext, useState } from "react";
 
-export const OpenStateContext = createContext();
+export const DrawerStateContext = createContext();
 
-const OpenStateProvider = ({ children }) => {
+const DrawerStateProvider = ({ children }) => {
   // pass state as true to keep drawer open at app start.
   const [open, setOpen] = useState(false);
   const handleDrawerToggle = () => {
     setOpen((prevState) => !prevState);
   };
   return (
-    <OpenStateContext.Provider value={{ open, setOpen, handleDrawerToggle }}>
+    <DrawerStateContext.Provider value={{ open, setOpen, handleDrawerToggle }}>
       {children}
-    </OpenStateContext.Provider>
+    </DrawerStateContext.Provider>
   );
 };
 
-export default OpenStateProvider;
+export default DrawerStateProvider;

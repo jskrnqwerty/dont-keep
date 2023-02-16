@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 // MUI imports
 import { Box } from "@mui/material";
 // components imports
-import { OpenStateContext } from "./context/OpenStateProvider";
+import { DrawerStateContext } from "./context/DrawerStateProvider";
 import HeaderBar from "./header-bar/HeaderBar";
 import Drawer from "./drawer/Drawer";
 import Notes from "./notes/Notes";
@@ -12,7 +12,7 @@ import ArchivedNotes from "./archived-notes/ArchivedNotes";
 import DeletedNotes from "./deleted-notes/deletedNotes";
 
 const Home = () => {
-  const { open, handleDrawerToggle } = useContext(OpenStateContext);
+  const { open, handleDrawerToggle } = useContext(DrawerStateContext);
   return (
     <Router>
       <Box
@@ -26,7 +26,7 @@ const Home = () => {
       </Box>
       <Box
         id="div2-drawer-and-everything-else"
-        sx={{ display: "flex", flexDirection: "row" }}
+        sx={{ display: "flex", flexDirection: "row", mx: 2, mt: 10 }}
       >
         <Drawer id="div3-drawer" />
         <Box
@@ -35,8 +35,7 @@ const Home = () => {
             display: "flex",
             flexDirection: "column",
             flexGrow: 1,
-            // alignItems: "center",
-            margin: "5rem 1rem 0rem 1rem",
+            mt: "20px",
           }}
         >
           {/* <Box id="div5-create-note-fields"> */}
@@ -46,9 +45,9 @@ const Home = () => {
             id="div6-saved-notes"
             sx={{
               display: "flex",
-              // flexDirection: "row",
               mt: "50px",
-              minWidth: "100%",
+              // flexDirection: "row",
+              // minWidth: "100%",
             }}
           >
             <Routes>

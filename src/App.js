@@ -1,14 +1,19 @@
 import "./App.css";
 import Home from "./components/Home";
-import OpenStateProvider, {
-  OpenStateContext,
-} from "./components/context/OpenStateProvider";
+import DrawerStateProvider, {
+  DrawerStateContext,
+} from "./components/context/DrawerStateProvider";
+import NotesDataContextProvider, {
+  NotesDataContext,
+} from "./components/context/NotesDataContextProvider";
 
 function App() {
   return (
-    <OpenStateProvider value={OpenStateContext}>
-      <Home />
-    </OpenStateProvider>
+    <NotesDataContextProvider value={NotesDataContext}>
+      <DrawerStateProvider value={DrawerStateContext}>
+        <Home />
+      </DrawerStateProvider>
+    </NotesDataContextProvider>
   );
 }
 
