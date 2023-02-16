@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 // MUI imports
 import { Box } from "@mui/material";
 // components imports
@@ -14,7 +14,7 @@ import DeletedNotes from "./deleted-notes/deletedNotes";
 const Home = () => {
   const { open, handleDrawerToggle } = useContext(OpenStateContext);
   return (
-    <>
+    <Router>
       <Box
         id="div1-header-and-everything-else"
         sx={{ display: "flex", flexDirection: "column" }}
@@ -37,26 +37,24 @@ const Home = () => {
             <CreateNote />
           </Box>
           <Box id="div6-saved-notes">
-            <BrowserRouter>
-              <Routes>
-                <Route
-                  path="/"
-                  element={<Notes />}
-                />
-                <Route
-                  path="/archive"
-                  element={<ArchivedNotes />}
-                />
-                <Route
-                  path="/bin"
-                  element={<DeletedNotes />}
-                />
-              </Routes>
-            </BrowserRouter>
+            <Routes>
+              <Route
+                path="/"
+                element={<Notes />}
+              />
+              <Route
+                path="/archive"
+                element={<ArchivedNotes />}
+              />
+              <Route
+                path="/bin"
+                element={<DeletedNotes />}
+              />
+            </Routes>
           </Box>
         </Box>
       </Box>
-    </>
+    </Router>
   );
 };
 

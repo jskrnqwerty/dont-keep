@@ -14,7 +14,7 @@ const HeaderBarStyled = styled(MuiAppBar)`
 const HeaderBar = ({ handleDrawerToggle }) => {
   return (
     <HeaderBarStyled position="fixed">
-      <Toolbar sx={{ px: 2.6 }}>
+      <Toolbar>
         <IconButton
           color="#5A5A5A"
           aria-label="open drawer"

@@ -7,6 +7,7 @@ const Logo = () => {
         src="https://upload.wikimedia.org/wikipedia/commons/e/e5/Google_Keep_icon_%282020%29.svg"
         height="38px"
         alt="Keep"
+        style={{ marginLeft: "5px" }}
       />
       <Typography
         variant="h6"

@@ -1,42 +1,55 @@
+import { Link } from "react-router-dom";
 import List from "@mui/material/List";
 import ListItem from "@mui/material/ListItem";
 import ListItemButton from "@mui/material/ListItemButton";
 import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
-// import InboxIcon from "@mui/icons-material/InboxIcon";
-import { InboxRounded } from "@mui/icons-material";
-import MailIcon from "@mui/icons-material/Mail";
+import {
+  LightbulbOutlined as LightBulbIcon,
+  ArchiveOutlined as ArchiveIcon,
+  DeleteOutline as DeleteIcon,
+} from "@mui/icons-material";
 
+const drawerMenu = [
+  { id: 1, name: "Notes", icon: <LightBulbIcon />, route: "/" },
+  { id: 2, name: "Archive", icon: <ArchiveIcon />, route: "/archive" },
+  { id: 3, name: "Bin", icon: <DeleteIcon />, route: "/bin" },
+];
 const DrawerList = ({ open }) => {
   return (
     <List>
-      {["Notes", "Archive", "Bin"].map((text, index) => (
+      {drawerMenu.map((menuItem) => (
         <ListItem
-          key={text}
+          key={menuItem.id}
           disablePadding
           sx={{ display: "block" }}
         >
-          <ListItemButton
-            sx={{
-              minHeight: 48,
-              justifyContent: open ? "initial" : "center",
-              px: 2.5,
-            }}
+          <Link
+            to={menuItem.route}
+            style={{ textDecoration: "none", color: "inherit" }}
           >
-            <ListItemIcon
+            <ListItemButton
               sx={{
-                minWidth: 0,
-                mr: open ? 3 : "auto",
-                justifyContent: "center",
+                minHeight: 48,
+                justifyContent: open ? "initial" : "center",
+                px: 2.5,
               }}
             >
-              {index % 2 === 0 ? <InboxRounded /> : <MailIcon />}
-            </ListItemIcon>
-            <ListItemText
-              primary={text}
-              sx={{ opacity: open ? 1 : 0 }}
-            />
-          </ListItemButton>
+              <ListItemIcon
+                sx={{
+                  minWidth: 0,
+                  mr: open ? 3 : "auto",
+                  justifyContent: "center",
+                }}
+              >
+                {menuItem.icon}
+              </ListItemIcon>
+              <ListItemText
+                primary={menuItem.name}
+                sx={{ opacity: open ? 1 : 0 }}
+              />
+            </ListItemButton>
+          </Link>
         </ListItem>
       ))}
     </List>
