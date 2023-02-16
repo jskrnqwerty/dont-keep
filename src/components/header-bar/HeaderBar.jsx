@@ -1,41 +1,32 @@
 import { styled } from "@mui/material/styles";
 import MuiAppBar from "@mui/material/AppBar";
 import Toolbar from "@mui/material/Toolbar";
-import Typography from "@mui/material/Typography";
 import IconButton from "@mui/material/IconButton";
 import MenuIcon from "@mui/icons-material/Menu";
 import { Tooltip } from "@mui/material";
+import Logo from "./Logo";
 
 const HeaderBarStyled = styled(MuiAppBar)`
   background: white;
   box-shadow: 1px 1px 1px #e0e0e0;
 `;
 
-const HeaderBar = ({ open, handleDrawerToggle }) => {
+const HeaderBar = ({ handleDrawerToggle }) => {
   return (
-    <HeaderBarStyled
-      position="fixed"
-      open={open}
-    >
-      <Toolbar>
+    <HeaderBarStyled position="fixed">
+      <Toolbar sx={{ px: 2.6 }}>
         <IconButton
-          color="inherit"
+          color="#5A5A5A"
           aria-label="open drawer"
           onClick={handleDrawerToggle}
-          // edge="start"
-          sx={{ marginRight: 1, color: "grey" }}
+          edge="start"
+          sx={{ marginRight: 1, color: "#5A5A5A" }}
         >
           <Tooltip title="Main Menu">
             <MenuIcon />
           </Tooltip>
         </IconButton>
-        <Typography
-          variant="h6"
-          component="div"
-          sx={{ color: "grey" }}
-        >
-          Keep
-        </Typography>
+        <Logo />
       </Toolbar>
     </HeaderBarStyled>
   );
