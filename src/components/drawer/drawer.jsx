@@ -37,6 +37,8 @@ const DrawerStyled = styled(MuiDrawer, {
   flexShrink: 0,
   whiteSpace: "nowrap",
   boxSizing: "border-box",
+  // to keep the drawer layer underneath the header layer
+  zIndex: 1,
   ...(open && {
     ...openedMixin(theme),
     "& .MuiDrawer-paper": openedMixin(theme),
@@ -48,12 +50,6 @@ const DrawerStyled = styled(MuiDrawer, {
 }));
 
 const Drawer = () => {
-  // const [open, setOpen] = useState(false);
-
-  // const handleDrawerToggle = () => {
-  //   setOpen((prevState) => !prevState);
-  // };
-
   // handles drawer status which is then used by the HeaderBar sitting at <Home />
   const { open, handleDrawerToggle } = useContext(OpenStateContext);
 

@@ -4,13 +4,12 @@ import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
 import IconButton from "@mui/material/IconButton";
 import MenuIcon from "@mui/icons-material/Menu";
+import { Tooltip } from "@mui/material";
 
-const HeaderBarStyled = styled(MuiAppBar, {
-  shouldForwardProp: (prop) => prop !== "open",
-})(({ theme }) => ({
-  // or just enter zIndex: 1200
-  zIndex: theme.zIndex.drawer + 1,
-}));
+const HeaderBarStyled = styled(MuiAppBar)`
+  background: white;
+  box-shadow: 1px 1px 1px #e0e0e0;
+`;
 
 const HeaderBar = ({ open, handleDrawerToggle }) => {
   return (
@@ -24,13 +23,16 @@ const HeaderBar = ({ open, handleDrawerToggle }) => {
           aria-label="open drawer"
           onClick={handleDrawerToggle}
           // edge="start"
-          sx={{ marginRight: 1 }}
+          sx={{ marginRight: 1, color: "grey" }}
         >
-          <MenuIcon />
+          <Tooltip title="Main Menu">
+            <MenuIcon />
+          </Tooltip>
         </IconButton>
         <Typography
           variant="h6"
           component="div"
+          sx={{ color: "grey" }}
         >
           Keep
         </Typography>
