@@ -31,12 +31,26 @@ const Home = () => {
         <Drawer id="div3-drawer" />
         <Box
           id="div4-create-note-and-saved-notes"
-          sx={{ display: "flex", flexDirection: "column", mt: "5rem" }}
+          sx={{
+            display: "flex",
+            flexDirection: "column",
+            flexGrow: 1,
+            // alignItems: "center",
+            margin: "5rem 1rem 0rem 1rem",
+          }}
         >
-          <Box id="div5-create-note-fields">
-            <CreateNote />
-          </Box>
-          <Box id="div6-saved-notes">
+          {/* <Box id="div5-create-note-fields"> */}
+          <CreateNote />
+          {/* </Box> */}
+          <Box
+            id="div6-saved-notes"
+            sx={{
+              display: "flex",
+              // flexDirection: "row",
+              mt: "50px",
+              minWidth: "100%",
+            }}
+          >
             <Routes>
               <Route
                 path="/"
