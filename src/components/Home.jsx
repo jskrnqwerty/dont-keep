@@ -7,9 +7,8 @@ import { DrawerStateContext } from "./context/DrawerStateProvider";
 import HeaderBar from "./header-bar/HeaderBar";
 import Drawer from "./drawer/Drawer";
 import Notes from "./notes/Notes";
-import CreateNote from "./notes/CreateNote";
 import ArchivedNotes from "./archived-notes/ArchivedNotes";
-import DeletedNotes from "./deleted-notes/deletedNotes";
+import DeletedNotes from "./deleted-notes/DeletedNotes";
 
 const Home = () => {
   const { open, handleDrawerToggle } = useContext(DrawerStateContext);
@@ -30,16 +29,16 @@ const Home = () => {
       >
         <Drawer id="div3-drawer" />
         <Box
-          id="div4-create-note-and-saved-notes"
-          sx={{
-            display: "flex",
-            flexDirection: "column",
-            flexGrow: 1,
-            mt: "20px",
-          }}
+        // id="div4-create-note-and-saved-notes"
+        // sx={{
+        //   display: "flex",
+        //   flexDirection: "column",
+        //   flexGrow: 1,
+        //   mt: "20px",
+        // }}
         >
           {/* <Box id="div5-create-note-fields"> */}
-          <CreateNote />
+          {/* <CreateNote /> */}
           {/* </Box> */}
           <Box
             id="div6-saved-notes"

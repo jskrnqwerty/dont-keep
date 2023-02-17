@@ -1,4 +1,4 @@
-import { useState, useContext } from "react";
+import { useState, useContext, useRef } from "react";
 import styled from "@emotion/styled";
 import { Box, ClickAwayListener, TextField } from "@mui/material";
 import { NotesDataContext } from "../context/NotesDataContextProvider";
@@ -15,14 +15,13 @@ const CreateNote = () => {
   const [noteTitle, setNoteTitle] = useState("");
   const [noteInfo, setNoteInfo] = useState("");
   const note = { id: uuid(), title: noteTitle, info: noteInfo };
+  const ref = useRef(null);
 
   const handleClickAway = () => {
     setShowTitle(false);
     if (noteTitle || noteInfo) {
-      // console.log("note Inside handleClickAway: ", note);
       setNotes([...notes, note]);
       resetInputFields();
-      // console.log("note Inside handleClickAway after resetInputFields(): ", note);
     }
   };
 
@@ -38,6 +37,15 @@ const CreateNote = () => {
   const handleInfoInput = (e) => {
     setNoteInfo(e.target.value);
   };
+
+  // shift focus to noteInfo field when enter is pressed
+  // will work on this later
+  // const handleEnterKeyPress = (e) => {
+  //   const keyPressed = e.key;
+  //   keyPressed === "Enter"
+  //     ? ref.current.focus()
+  //     : console.log(e.key, " pressed");
+  // };
 
   return (
     <ClickAwayListener onClickAway={handleClickAway}>
@@ -63,6 +71,7 @@ const CreateNote = () => {
             // Title field is multiline but focus switches to note body when Enter is hit
             multiline
             onChange={handleTitleInput}
+            // onKeyDown={(e) => handleEnterKeyPress(e)}
             value={noteTitle}
           />
         )}
@@ -70,6 +79,7 @@ const CreateNote = () => {
           id="note-field"
           variant="standard"
           placeholder="Take a note..."
+          ref={ref}
           InputProps={{ disableUnderline: true }}
           autoFocus
           multiline
