@@ -1,15 +1,22 @@
 import { useContext } from "react";
 import { NotesDataContext } from "../context/NotesDataContextProvider";
 import EmptyNotes from "./EmptyNotes";
+import { Grid } from "@mui/material";
+
+import NoteCard from "./NoteCard";
 
 const Notes = () => {
-  const { notes, setNotes } = useContext(NotesDataContext);
+  const { notes } = useContext(NotesDataContext);
 
   return (
     <>
-      <EmptyNotes />
-      {/* {if(notes) {
-      }} */}
+      <Grid container>
+        {notes.length > 0 ? (
+          notes.map((noteItem) => <NoteCard noteItem={noteItem} />)
+        ) : (
+          <EmptyNotes />
+        )}
+      </Grid>
     </>
   );
 };

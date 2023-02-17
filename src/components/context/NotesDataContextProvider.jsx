@@ -6,7 +6,7 @@ const NotesDataContextProvider = ({ children }) => {
   const [notes, setNotes] = useState([]);
   const [currNote, setCurrNote] = useState({});
   const [archivedNotes, setArchivedNotes] = useState([]);
-  const [deletedNotes, setdeletedNotes] = useState([]);
+  const [deletedNotes, setDeletedNotes] = useState([]);
 
   return (
     <NotesDataContext.Provider
@@ -18,7 +18,7 @@ const NotesDataContextProvider = ({ children }) => {
         archivedNotes,
         setArchivedNotes,
         deletedNotes,
-        setdeletedNotes,
+        setDeletedNotes,
       }}
     >
       {children}

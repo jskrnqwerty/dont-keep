@@ -33,12 +33,10 @@ const CreateNote = () => {
 
   const handleTitleInput = (e) => {
     setNoteTitle(e.target.value);
-    // console.log("Title field hit");
   };
 
   const handleInfoInput = (e) => {
     setNoteInfo(e.target.value);
-    // console.log("Info field hit");
   };
 
   return (
