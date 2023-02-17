@@ -1,12 +1,15 @@
 import { useContext } from "react";
 import { NotesDataContext } from "../context/NotesDataContextProvider";
+import EmptyNotes from "./EmptyNotes";
 
 const Notes = () => {
-  const { currNote, notes, setNotes } = useContext(NotesDataContext);
+  const { notes, setNotes } = useContext(NotesDataContext);
+
   return (
     <>
-      "Notes"
-      {console.log("Inside Notes.jsx", currNote)}
+      <EmptyNotes />
+      {/* {if(notes) {
+      }} */}
     </>
   );
 };

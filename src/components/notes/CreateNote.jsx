@@ -10,7 +10,7 @@ const TextFieldStyled = styled(TextField)`
 
 const CreateNote = () => {
   // currNote is being read in the Notes component.
-  const { setCurrNote } = useContext(NotesDataContext);
+  const { notes, setNotes } = useContext(NotesDataContext);
   const [showTitle, setShowTitle] = useState(false);
   const [noteTitle, setNoteTitle] = useState("");
   const [noteInfo, setNoteInfo] = useState("");
@@ -20,8 +20,7 @@ const CreateNote = () => {
     setShowTitle(false);
     if (noteTitle || noteInfo) {
       // console.log("note Inside handleClickAway: ", note);
-      setCurrNote(note);
-      // console.log("currNote Inside handleClickAway: ", currNote);
+      setNotes([...notes, note]);
       resetInputFields();
       // console.log("note Inside handleClickAway after resetInputFields(): ", note);
     }
