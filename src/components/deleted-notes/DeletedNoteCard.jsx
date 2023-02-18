@@ -13,22 +13,22 @@ import {
   RestoreFromTrashOutlined as RestoreIcon,
 } from "@mui/icons-material";
 
-const ArchivedNoteCard = ({ noteItem }) => {
+const ArchivedNoteCard = ({ notesItem }) => {
   const { setNotes, deletedNotes, setDeletedNotes } =
     useContext(NotesDataContext);
 
-  const handleDeleteForeverButton = (noteItem) => {
-    removeFromDeletedNotes(noteItem);
+  const handleDeleteForeverButton = (notesItem) => {
+    removeFromDeletedNotes(notesItem);
   };
 
-  const handleRestoreButton = (noteItem) => {
-    setNotes((prev) => [...prev, noteItem]);
-    removeFromDeletedNotes(noteItem);
+  const handleRestoreButton = (notesItem) => {
+    setNotes((prev) => [...prev, notesItem]);
+    removeFromDeletedNotes(notesItem);
   };
 
-  const removeFromDeletedNotes = (noteItem) => {
+  const removeFromDeletedNotes = (notesItem) => {
     const updatedDeletedNotes = deletedNotes.filter(
-      (item) => item !== noteItem
+      (item) => item !== notesItem
     );
     setDeletedNotes(updatedDeletedNotes);
   };
@@ -43,16 +43,16 @@ const ArchivedNoteCard = ({ noteItem }) => {
       }}
     >
       <CardContent>
-        <Typography gutterBottom>{noteItem.title}</Typography>
-        <Typography color="text.secondary">{noteItem.info}</Typography>
+        <Typography gutterBottom>{notesItem.title}</Typography>
+        <Typography color="text.secondary">{notesItem.info}</Typography>
       </CardContent>
       <CardActions>
-        <IconButton onClick={() => handleDeleteForeverButton(noteItem)}>
+        <IconButton onClick={() => handleDeleteForeverButton(notesItem)}>
           <Tooltip title="Delete Forever">
             <DeleteForeverIcon fontSize="small" />
           </Tooltip>
         </IconButton>
-        <IconButton onClick={() => handleRestoreButton(noteItem)}>
+        <IconButton onClick={() => handleRestoreButton(notesItem)}>
           <Tooltip title="Restore">
             <RestoreIcon fontSize="small" />
           </Tooltip>

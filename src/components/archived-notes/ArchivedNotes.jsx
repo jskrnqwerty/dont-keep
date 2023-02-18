@@ -15,13 +15,15 @@ const ArchivedNotes = () => {
         display: "flex",
         flexDirection: "column",
         flexGrow: 1,
-        mt: "20px",
+        mt: "80px",
+        marginX: "30px",
+        padding: "10px",
       }}
     >
       <Grid container>
         {archivedNotes.length > 0 ? (
-          archivedNotes.map((noteItem) => (
-            <ArchivedNoteCard noteItem={noteItem} />
+          archivedNotes.map((notesItem) => (
+            <ArchivedNoteCard notesItem={notesItem} />
           ))
         ) : (
           <EmptyArchivedNotes />

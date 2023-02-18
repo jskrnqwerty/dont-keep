@@ -8,7 +8,8 @@ import Logo from "./Logo";
 
 const HeaderBarStyled = styled(MuiAppBar)`
   background: white;
-  box-shadow: 1px 1px 1px #e0e0e0;
+  box-shadow: 0px 0px 0px #e0e0e0;
+  outline: 1px solid lightgrey;
 `;
 
 const HeaderBar = ({ handleDrawerToggle }) => {

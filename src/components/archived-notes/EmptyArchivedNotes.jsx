@@ -8,7 +8,7 @@ const EmptyArchivedNotes = () => {
         display: "flex",
         flexDirection: "column",
         m: "auto",
-        mt: "16vh",
+        mt: "33vh",
       }}
     >
       <ArchiveIcon

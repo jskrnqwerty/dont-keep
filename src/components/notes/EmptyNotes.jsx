@@ -6,15 +6,18 @@ const EmptyNotes = () => {
     <Box
       sx={{
         display: "flex",
+        width: "100%",
         flexDirection: "column",
-        m: "auto",
-        mt: "16vh",
+        marginTop: "16vh",
+        marginX: "auto",
       }}
     >
       <LightbulbIcon
         sx={{ fontSize: "7rem", margin: "auto", color: "#E0E0E0" }}
       />
-      <Typography sx={{ fontSize: "1.4rem", color: "#5A5A5A", mt: "1rem" }}>
+      <Typography
+        sx={{ fontSize: "1.4rem", color: "#5A5A5A", mt: "1rem", mx: "auto" }}
+      >
         Notes you create appear here
       </Typography>
     </Box>

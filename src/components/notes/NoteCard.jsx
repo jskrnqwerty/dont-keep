@@ -1,8 +1,8 @@
 import { useContext } from "react";
 import { NotesDataContext } from "../context/NotesDataContextProvider";
 import {
-  Box,
   Typography,
+  Card,
   CardContent,
   CardActions,
   IconButton,
@@ -13,52 +13,60 @@ import {
   DeleteOutline as DeleteIcon,
 } from "@mui/icons-material";
 
-const NoteCard = ({ noteItem }) => {
+const NoteCard = ({ notesItem }) => {
   const { notes, setNotes, setArchivedNotes, setDeletedNotes } =
     useContext(NotesDataContext);
 
-  const handleArchiveButton = (noteItem) => {
-    setArchivedNotes((prev) => [...prev, noteItem]);
-    removeFromNotes(noteItem);
+  const handleArchiveButton = (notesItem) => {
+    setArchivedNotes((prev) => [...prev, notesItem]);
+    removeFromNotes(notesItem);
   };
 
-  const handleDeleteButton = (noteItem) => {
-    console.log("Delete ", noteItem.title);
-    setDeletedNotes((prev) => [...prev, noteItem]);
-    removeFromNotes(noteItem);
+  const handleDeleteButton = (notesItem) => {
+    console.log("Delete ", notesItem.title);
+    setDeletedNotes((prev) => [...prev, notesItem]);
+    removeFromNotes(notesItem);
   };
 
-  const removeFromNotes = (noteItem) => {
-    const updatedNotes = notes.filter((item) => item !== noteItem);
+  const removeFromNotes = (notesItem) => {
+    const updatedNotes = notes.filter((item) => item !== notesItem);
     setNotes(updatedNotes);
   };
 
   return (
-    <Box
+    <Card
       sx={{
         m: "0.3rem",
         width: "240px",
         outline: "1px solid lightgrey",
-        borderRadius: "8px",
+        borderRadius: "5px",
+        "&: hover": {
+          boxShadow: "1px 1px 5px 2px lightgrey",
+        },
       }}
     >
       <CardContent>
-        <Typography gutterBottom>{noteItem.title}</Typography>
-        <Typography color="text.secondary">{noteItem.info}</Typography>
+        <Typography gutterBottom>{notesItem.title}</Typography>
+        <Typography
+          color="text.secondary"
+          noWrap="false"
+        >
+          {notesItem.info}
+        </Typography>
       </CardContent>
       <CardActions>
-        <IconButton onClick={() => handleArchiveButton(noteItem)}>
+        <IconButton onClick={() => handleArchiveButton(notesItem)}>
           <Tooltip title="Archive">
             <ArchiveIcon fontSize="small" />
           </Tooltip>
         </IconButton>
-        <IconButton onClick={() => handleDeleteButton(noteItem)}>
+        <IconButton onClick={() => handleDeleteButton(notesItem)}>
           <Tooltip title="Delete">
             <DeleteIcon fontSize="small" />
           </Tooltip>
         </IconButton>
       </CardActions>
-    </Box>
+    </Card>
   );
 };
 

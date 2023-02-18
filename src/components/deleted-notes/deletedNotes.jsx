@@ -15,13 +15,15 @@ const DeletedNotes = () => {
         display: "flex",
         flexDirection: "column",
         flexGrow: 1,
-        mt: "20px",
+        marginTop: "80px",
+        marginX: "30px",
+        padding: "10px",
       }}
     >
       <Grid container>
         {deletedNotes.length > 0 ? (
-          deletedNotes.map((noteItem) => (
-            <DeletedNoteCard noteItem={noteItem} />
+          deletedNotes.map((notesItem) => (
+            <DeletedNoteCard notesItem={notesItem} />
           ))
         ) : (
           <EmptyDeletedNotes />

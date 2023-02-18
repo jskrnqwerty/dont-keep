@@ -13,23 +13,23 @@ import {
   DeleteOutline as DeleteIcon,
 } from "@mui/icons-material";
 
-const ArchivedNoteCard = ({ noteItem }) => {
+const ArchivedNoteCard = ({ notesItem }) => {
   const { setNotes, archivedNotes, setArchivedNotes, setDeletedNotes } =
     useContext(NotesDataContext);
 
-  const handleUnarchiveButton = (noteItem) => {
-    setNotes((prev) => [...prev, noteItem]);
-    removeFromArchivedNotes(noteItem);
+  const handleUnarchiveButton = (notesItem) => {
+    setNotes((prev) => [...prev, notesItem]);
+    removeFromArchivedNotes(notesItem);
   };
 
-  const handleDeleteButton = (noteItem) => {
-    setDeletedNotes((prev) => [...prev, noteItem]);
-    removeFromArchivedNotes(noteItem);
+  const handleDeleteButton = (notesItem) => {
+    setDeletedNotes((prev) => [...prev, notesItem]);
+    removeFromArchivedNotes(notesItem);
   };
 
-  const removeFromArchivedNotes = (noteItem) => {
+  const removeFromArchivedNotes = (notesItem) => {
     const updatedArchivedNotes = archivedNotes.filter(
-      (item) => item !== noteItem
+      (item) => item !== notesItem
     );
     setArchivedNotes(updatedArchivedNotes);
   };
@@ -44,16 +44,16 @@ const ArchivedNoteCard = ({ noteItem }) => {
       }}
     >
       <CardContent>
-        <Typography gutterBottom>{noteItem.title}</Typography>
-        <Typography color="text.secondary">{noteItem.info}</Typography>
+        <Typography gutterBottom>{notesItem.title}</Typography>
+        <Typography color="text.secondary">{notesItem.info}</Typography>
       </CardContent>
       <CardActions>
-        <IconButton onClick={() => handleUnarchiveButton(noteItem)}>
+        <IconButton onClick={() => handleUnarchiveButton(notesItem)}>
           <Tooltip title="Unarchive">
             <UnarchiveIcon fontSize="small" />
           </Tooltip>
         </IconButton>
-        <IconButton onClick={() => handleDeleteButton(noteItem)}>
+        <IconButton onClick={() => handleDeleteButton(notesItem)}>
           <Tooltip title="Delete">
             <DeleteIcon fontSize="small" />
           </Tooltip>

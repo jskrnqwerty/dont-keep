@@ -6,10 +6,10 @@ import { v4 as uuid } from "uuid";
 
 const TextFieldStyled = styled(TextField)`
   padding: 0.5rem 1rem;
+  width: 600px;
 `;
 
 const CreateNote = () => {
-  // currNote is being read in the Notes component.
   const { notes, setNotes } = useContext(NotesDataContext);
   const [showTitle, setShowTitle] = useState(false);
   const [noteTitle, setNoteTitle] = useState("");
@@ -57,9 +57,7 @@ const CreateNote = () => {
           boxShadow: "0px 1px 4px 1px #5A5A5A5A",
           display: "flex",
           flexDirection: "column",
-          flexGrow: 1,
-          minWidth: "600px",
-          overflow: "hidden",
+          mt: "95px",
         }}
       >
         {showTitle && (
@@ -68,11 +66,11 @@ const CreateNote = () => {
             variant="standard"
             placeholder="Title"
             InputProps={{ disableUnderline: true }}
+            onChange={handleTitleInput}
+            value={noteTitle}
+            // onKeyDown={(e) => handleEnterKeyPress(e)}
             // Title field is multiline but focus switches to note body when Enter is hit
             multiline
-            onChange={handleTitleInput}
-            // onKeyDown={(e) => handleEnterKeyPress(e)}
-            value={noteTitle}
           />
         )}
         <TextFieldStyled
@@ -81,11 +79,11 @@ const CreateNote = () => {
           placeholder="Take a note..."
           ref={ref}
           InputProps={{ disableUnderline: true }}
-          autoFocus
-          multiline
           onClick={() => setShowTitle(true)}
           onChange={handleInfoInput}
           value={noteInfo}
+          autoFocus
+          multiline
         />
       </Box>
     </ClickAwayListener>

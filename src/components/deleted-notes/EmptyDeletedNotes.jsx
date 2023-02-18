@@ -8,7 +8,7 @@ const EmptyDeletedNotes = () => {
         display: "flex",
         flexDirection: "column",
         m: "auto",
-        mt: "16vh",
+        mt: "33vh",
       }}
     >
       <DeleteIcon sx={{ fontSize: "7rem", margin: "auto", color: "#E0E0E0" }} />
