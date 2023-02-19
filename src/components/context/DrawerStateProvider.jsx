@@ -10,8 +10,15 @@ const DrawerStateProvider = ({ children }) => {
   const handleDrawerToggle = () => {
     setOpen((prevState) => !prevState);
   };
+
+  const handleDrawerOpen = (isOpen) => {
+    setOpen(isOpen);
+  };
+
   return (
-    <DrawerStateContext.Provider value={{ open, setOpen, handleDrawerToggle }}>
+    <DrawerStateContext.Provider
+      value={{ open, setOpen, handleDrawerToggle, handleDrawerOpen }}
+    >
       {children}
     </DrawerStateContext.Provider>
   );

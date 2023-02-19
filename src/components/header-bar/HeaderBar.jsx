@@ -5,6 +5,7 @@ import IconButton from "@mui/material/IconButton";
 import MenuIcon from "@mui/icons-material/Menu";
 import { Tooltip } from "@mui/material";
 import Logo from "./Logo";
+import HoverDrawer from "../drawer/HoverDrawer";
 
 const HeaderBarStyled = styled(MuiAppBar)`
   background: white;
@@ -28,6 +29,7 @@ const HeaderBar = ({ handleDrawerToggle }) => {
           </Tooltip>
         </IconButton>
         <Logo />
+        <HoverDrawer />
       </Toolbar>
     </HeaderBarStyled>
   );

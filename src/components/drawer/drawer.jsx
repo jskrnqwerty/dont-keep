@@ -51,13 +51,16 @@ const DrawerStyled = styled(MuiDrawer, {
 
 const Drawer = () => {
   // handles drawer status which is then used by the HeaderBar sitting at <Home />
-  const { open, handleDrawerToggle } = useContext(DrawerStateContext);
+  const { open, handleDrawerToggle, handleDrawerOpen } =
+    useContext(DrawerStateContext);
 
   return (
     <Box sx={{ display: "flex" }}>
       <DrawerStyled
         variant="permanent"
         open={open}
+        onMouseEnter={() => handleDrawerOpen(true)}
+        onMouseLeave={() => handleDrawerOpen(false)}
       >
         <DrawerHeader handleDrawerToggle={handleDrawerToggle} />
         <DrawerList open={open} />
