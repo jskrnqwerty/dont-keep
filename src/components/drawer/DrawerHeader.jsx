@@ -5,7 +5,7 @@ const DrawerHeaderStyled = styled("div")(({ theme }) => ({
   ...theme.mixins.toolbar,
 }));
 
-const DrawerHeader = ({ handleDrawerToggle }) => {
+const DrawerHeader = () => {
   return <DrawerHeaderStyled />;
 };
 

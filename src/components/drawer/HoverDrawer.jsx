@@ -1,41 +1,70 @@
-import { useState } from "react";
-import { Box, Drawer, IconButton, Typography } from "@mui/material";
+import { useContext } from "react";
+import { styled } from "@mui/material/styles";
+import Box from "@mui/material/Box";
+import MuiDrawer from "@mui/material/Drawer";
+//component imports
 import DrawerList from "./DrawerList";
-import { MenuBookRounded } from "@mui/icons-material";
+import DrawerHeader from "./DrawerHeader";
+import { DrawerStateContext } from "../context/DrawerStateProvider";
+
+export const drawerWidth = 240;
+
+const openedMixin = (theme) => ({
+  width: drawerWidth,
+  transition: theme.transitions.create("width", {
+    easing: theme.transitions.easing.sharp,
+    duration: theme.transitions.duration.enteringScreen,
+  }),
+  overflowX: "hidden",
+});
+
+const closedMixin = (theme) => ({
+  transition: theme.transitions.create("width", {
+    easing: theme.transitions.easing.sharp,
+    // duration: theme.transitions.duration.leavingScreen,
+  }),
+  overflowX: "hidden",
+  width: `calc(${theme.spacing(7)} + 1px)`,
+  [theme.breakpoints.up("sm")]: {
+    width: `calc(${theme.spacing(8)} + 1px)`,
+  },
+});
+
+const HoverDrawerStyled = styled(MuiDrawer, {
+  shouldForwardProp: (prop) => prop !== "open",
+})(({ theme, open }) => ({
+  width: drawerWidth,
+  // flexShrink: 0,
+  whiteSpace: "nowrap",
+  boxSizing: "border-box",
+  // to keep the drawer layer underneath the header layer
+  zIndex: 1,
+  ...(open && {
+    ...openedMixin(theme),
+    "& .MuiDrawer-paper": openedMixin(theme),
+  }),
+  ...(!open && {
+    ...closedMixin(theme),
+    "& .MuiDrawer-paper": closedMixin(theme),
+  }),
+}));
 
 const HoverDrawer = () => {
-  const [isDrawerOpen, setIsDrawerOpen] = useState(false);
+  // handles drawer status which is then used by the HeaderBar sitting at <Home />
+  const { openHover, setOpenHover } = useContext(DrawerStateContext);
 
   return (
-    <>
-      <IconButton
-        size="large"
-        edge="start"
-        bgcolor="grey"
-        textAlign="center"
-        aria-label="l"
-        onClick={() => setIsDrawerOpen(true)}
-        mx="100px"
+    <Box>
+      <HoverDrawerStyled
+        variant="permanent"
+        open={openHover}
+        onMouseEnter={() => setOpenHover(true)}
+        onMouseLeave={() => setOpenHover(false)}
       >
-        <MenuBookRounded />
-      </IconButton>
-      <Drawer
-        anchor="left"
-        open={isDrawerOpen}
-        onClose={() => setIsDrawerOpen(false)}
-      >
-        <Box
-          p={2}
-          width="250px"
-          textAlign="center"
-          role="presentation"
-        >
-          <DrawerList />
-          <Typography>Side panel</Typography>
-        </Box>
-      </Drawer>
-    </>
+        <DrawerHeader />
+        <DrawerList />
+      </HoverDrawerStyled>
+    </Box>
   );
 };
-
 export default HoverDrawer;

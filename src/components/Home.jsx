@@ -1,25 +1,24 @@
-import { useContext } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 // MUI imports
 import { Box } from "@mui/material";
 // components imports
-import { DrawerStateContext } from "./context/DrawerStateProvider";
 import HeaderBar from "./header-bar/HeaderBar";
 import Drawer from "./drawer/Drawer";
 import Notes from "./notes/Notes";
 import ArchivedNotes from "./archived-notes/ArchivedNotes";
 import DeletedNotes from "./deleted-notes/DeletedNotes";
+import HoverDrawer from "./drawer/HoverDrawer";
 
 const Home = () => {
-  const { open, handleDrawerToggle } = useContext(DrawerStateContext);
   return (
     <Router>
-      <HeaderBar
-        open={open}
-        handleDrawerToggle={handleDrawerToggle}
-      />
+      <HeaderBar />
+      <Box sx={{ display: "block" }}>
+        <HoverDrawer id="hover-drawer" />
+      </Box>
       <Box sx={{ display: "flex" }}>
-        <Drawer id="div3-drawer" />
+        <Drawer id="drawer" />
+
         <Routes>
           <Route
             path="/"
