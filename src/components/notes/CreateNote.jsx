@@ -20,7 +20,7 @@ const CreateNote = () => {
   const handleClickAway = () => {
     setShowTitle(false);
     if (noteTitle || noteInfo) {
-      setNotes([...notes, note]);
+      setNotes([note, ...notes]);
       resetInputFields();
     }
   };

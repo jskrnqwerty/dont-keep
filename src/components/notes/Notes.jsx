@@ -5,7 +5,8 @@ import { NotesDataContext } from "../context/NotesDataContextProvider";
 import EmptyNotes from "./EmptyNotes";
 import CreateNote from "./CreateNote";
 import NoteCard from "./NoteCard";
-import EditNote from "../edit-note/EditNote";
+import EditNote from "../edit-note-card/EditNoteCard";
+import NoteCardTemplate from "../common/NoteCardTemplate";
 
 const Notes = () => {
   const { notes } = useContext(NotesDataContext);
@@ -39,7 +40,11 @@ const Notes = () => {
               //   borderRadius: "5px",
               // }}
             >
-              <NoteCard notesItem={notesItem} />
+              {/* <NoteCard notesItem={notesItem} /> */}
+              <NoteCardTemplate
+                notesItem={notesItem}
+                type="notes-note-card"
+              />
             </Grid2>
           ))
         ) : (

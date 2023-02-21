@@ -18,12 +18,12 @@ const ArchivedNoteCard = ({ notesItem }) => {
     useContext(NotesDataContext);
 
   const handleUnarchiveButton = (notesItem) => {
-    setNotes((prev) => [...prev, notesItem]);
+    setNotes((prev) => [notesItem, ...prev]);
     removeFromArchivedNotes(notesItem);
   };
 
   const handleDeleteButton = (notesItem) => {
-    setDeletedNotes((prev) => [...prev, notesItem]);
+    setDeletedNotes((prev) => [notesItem, ...prev]);
     removeFromArchivedNotes(notesItem);
   };
 

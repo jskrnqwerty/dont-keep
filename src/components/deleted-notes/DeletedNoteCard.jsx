@@ -22,7 +22,7 @@ const ArchivedNoteCard = ({ notesItem }) => {
   };
 
   const handleRestoreButton = (notesItem) => {
-    setNotes((prev) => [...prev, notesItem]);
+    setNotes((prev) => [notesItem, ...prev]);
     removeFromDeletedNotes(notesItem);
   };
 

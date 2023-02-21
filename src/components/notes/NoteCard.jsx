@@ -20,13 +20,13 @@ const NoteCard = ({ notesItem }) => {
     useContext(NotesDataContext);
 
   const handleArchiveButton = (notesItem) => {
-    setArchivedNotes((prev) => [...prev, notesItem]);
+    setArchivedNotes((prev) => [notesItem, ...prev]);
     removeFromNotes(notesItem);
   };
 
   const handleDeleteButton = (notesItem) => {
     console.log("Delete ", notesItem.title);
-    setDeletedNotes((prev) => [...prev, notesItem]);
+    setDeletedNotes((prev) => [notesItem, ...prev]);
     removeFromNotes(notesItem);
   };
 

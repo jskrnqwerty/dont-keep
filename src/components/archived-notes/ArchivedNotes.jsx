@@ -4,6 +4,7 @@ import EmptyArchivedNotes from "./EmptyArchivedNotes";
 import { Box, Grid } from "@mui/material";
 
 import ArchivedNoteCard from "./ArchivedNoteCard";
+import NoteCardTemplate from "../common/NoteCardTemplate";
 
 const ArchivedNotes = () => {
   const { archivedNotes } = useContext(NotesDataContext);
@@ -23,7 +24,11 @@ const ArchivedNotes = () => {
       <Grid container>
         {archivedNotes.length > 0 ? (
           archivedNotes.map((notesItem) => (
-            <ArchivedNoteCard notesItem={notesItem} />
+            // <ArchivedNoteCard notesItem={notesItem} />
+            <NoteCardTemplate
+              notesItem={notesItem}
+              type="archived-note-card"
+            />
           ))
         ) : (
           <EmptyArchivedNotes />
