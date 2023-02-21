@@ -5,7 +5,9 @@ import ListItemButton from "@mui/material/ListItemButton";
 import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
 import {
-  LightbulbOutlined as LightBulbIcon,
+  LightbulbOutlined as NotesIcon,
+  NotificationsNoneOutlined as RemindersIcon,
+  CreateOutlined as EditLabelsIcon,
   ArchiveOutlined as ArchiveIcon,
   DeleteOutline as DeleteIcon,
 } from "@mui/icons-material";
@@ -13,9 +15,16 @@ import { useContext } from "react";
 import { DrawerStateContext } from "../context/DrawerStateProvider";
 
 const drawerMenu = [
-  { id: 1, name: "Notes", icon: <LightBulbIcon />, route: "/" },
-  { id: 2, name: "Archive", icon: <ArchiveIcon />, route: "/archive" },
-  { id: 3, name: "Bin", icon: <DeleteIcon />, route: "/bin" },
+  { id: 1, name: "Notes", icon: <NotesIcon />, route: "/" },
+  { id: 2, name: "Reminders", icon: <RemindersIcon />, route: "/reminders" },
+  {
+    id: 3,
+    name: "Edit Labels",
+    icon: <EditLabelsIcon />,
+    route: "/edit-labels",
+  },
+  { id: 4, name: "Archive", icon: <ArchiveIcon />, route: "/archive" },
+  { id: 5, name: "Bin", icon: <DeleteIcon />, route: "/bin" },
 ];
 
 const DrawerList = () => {

@@ -10,20 +10,15 @@ import DeletedNotes from "./deleted-notes/DeletedNotes";
 import HoverDrawer from "./drawer/HoverDrawer";
 import { DrawerStateContext } from "./context/DrawerStateProvider";
 import { useContext } from "react";
+import Reminders from "./reminders/Reminders";
+import EditLabels from "./edit-labels/EditLabels";
 
 const Home = () => {
   const { open } = useContext(DrawerStateContext);
   return (
     <Router>
       <HeaderBar />
-      {!open && (
-        <Box
-          id="hover-drawer"
-          sx={{ display: "block" }}
-        >
-          <HoverDrawer />
-        </Box>
-      )}
+      {!open && <HoverDrawer />}
 
       <Box
         id="drawer"
@@ -34,6 +29,14 @@ const Home = () => {
           <Route
             path="/"
             element={<Notes />}
+          />
+          <Route
+            path="/reminders"
+            element={<Reminders />}
+          />
+          <Route
+            path="/edit-labels"
+            element={<EditLabels />}
           />
           <Route
             path="/archive"

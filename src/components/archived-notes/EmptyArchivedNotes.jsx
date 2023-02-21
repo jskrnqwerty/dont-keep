@@ -8,14 +8,14 @@ const EmptyArchivedNotes = () => {
         display: "flex",
         flexDirection: "column",
         m: "auto",
-        mt: "33vh",
+        mt: "26vh",
       }}
     >
       <ArchiveIcon
         sx={{ fontSize: "7rem", margin: "auto", color: "#E0E0E0" }}
       />
       <Typography sx={{ fontSize: "1.4rem", color: "#5A5A5A", mt: "1rem" }}>
-        Notes you archive appear here
+        Your archived notes appear here
       </Typography>
     </Box>
   );

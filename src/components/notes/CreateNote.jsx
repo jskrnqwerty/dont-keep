@@ -51,11 +51,7 @@ const CreateNote = () => {
     <ClickAwayListener onClickAway={handleClickAway}>
       <Box
         id="div5-create-note-fields"
-        sx={{
-          // display: "flex",
-          // flexDirection: "column",
-          mx: 2.5,
-        }}
+        sx={{ mx: 2.5 }}
       >
         <Stack
           margin="auto"
