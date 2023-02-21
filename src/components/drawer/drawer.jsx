@@ -7,7 +7,7 @@ import DrawerList from "./DrawerList";
 import DrawerHeader from "./DrawerHeader";
 import { DrawerStateContext } from "../context/DrawerStateProvider";
 
-export const drawerWidth = 240;
+export const drawerWidth = 275;
 
 const openedMixin = (theme) => ({
   width: drawerWidth,
@@ -21,7 +21,7 @@ const openedMixin = (theme) => ({
 const closedMixin = (theme) => ({
   transition: theme.transitions.create("width", {
     easing: theme.transitions.easing.sharp,
-    // duration: theme.transitions.duration.leavingScreen,
+    duration: theme.transitions.duration.leavingScreen,
   }),
   overflowX: "hidden",
   width: `calc(${theme.spacing(7)} + 1px)`,

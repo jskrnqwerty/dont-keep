@@ -5,6 +5,7 @@ import { NotesDataContext } from "../context/NotesDataContextProvider";
 import EmptyNotes from "./EmptyNotes";
 import CreateNote from "./CreateNote";
 import NoteCard from "./NoteCard";
+import EditNote from "../edit-note/EditNote";
 
 const Notes = () => {
   const { notes } = useContext(NotesDataContext);
@@ -15,7 +16,7 @@ const Notes = () => {
       <Grid2
         container
         display="flex"
-        gap={2}
+        gap={1.5}
         sx={{ marginTop: "30px", marginX: "10px", padding: "10px" }}
         maxWidth="99%"
         minWidth="90%"
@@ -27,15 +28,16 @@ const Notes = () => {
             <Grid2
               item
               maxWidth="240px"
+              onClick={() => <EditNote notesItem={notesItem} />}
               // xs={12}
               // sm={8}
               // md={4}
               // lg={2}
               // xl={2}
-              sx={{
-                outline: "1px solid lightgrey",
-                borderRadius: "5px",
-              }}
+              // sx={{
+              //   outline: "1px solid lightgrey",
+              //   borderRadius: "5px",
+              // }}
             >
               <NoteCard notesItem={notesItem} />
             </Grid2>

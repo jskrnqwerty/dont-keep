@@ -15,16 +15,35 @@ import { useContext } from "react";
 import { DrawerStateContext } from "../context/DrawerStateProvider";
 
 const drawerMenu = [
-  { id: 1, name: "Notes", icon: <NotesIcon />, route: "/" },
-  { id: 2, name: "Reminders", icon: <RemindersIcon />, route: "/reminders" },
+  { id: 1, name: "Notes", icon: <NotesIcon />, route: "/", headerText: "Keep" },
+  {
+    id: 2,
+    name: "Reminders",
+    icon: <RemindersIcon />,
+    route: "/reminders",
+    headerText: "Reminders",
+  },
   {
     id: 3,
-    name: "Edit Labels",
+    name: "Edit labels",
     icon: <EditLabelsIcon />,
     route: "/edit-labels",
+    headerText: "Edit labels",
   },
-  { id: 4, name: "Archive", icon: <ArchiveIcon />, route: "/archive" },
-  { id: 5, name: "Bin", icon: <DeleteIcon />, route: "/bin" },
+  {
+    id: 4,
+    name: "Archive",
+    icon: <ArchiveIcon />,
+    route: "/archive",
+    headerText: "Archive",
+  },
+  {
+    id: 5,
+    name: "Bin",
+    icon: <DeleteIcon />,
+    route: "/bin",
+    headerText: "Bin",
+  },
 ];
 
 const DrawerList = () => {
@@ -36,13 +55,19 @@ const DrawerList = () => {
         <ListItem
           key={menuItem.id}
           disablePadding
-          sx={{ display: "block" }}
+          sx={{
+            display: "block",
+            borderTopRightRadius: "100px",
+            borderBottomRightRadius: "100px",
+            "&:hover": { bgcolor: "#feefc3" },
+          }}
         >
           <Link
             to={menuItem.route}
             style={{ textDecoration: "none", color: "inherit" }}
           >
             <ListItemButton
+              disableRipple
               sx={{
                 minHeight: 48,
                 justifyContent: open || openHover ? "initial" : "center",
