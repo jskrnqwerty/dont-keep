@@ -3,7 +3,6 @@ import { NotesDataContext } from "../context/NotesDataContextProvider";
 import EmptyDeletedNotes from "./EmptyDeletedNotes";
 import { Box, Grid } from "@mui/material";
 
-import DeletedNoteCard from "./DeletedNoteCard";
 import NoteCardTemplate from "../common/NoteCardTemplate";
 
 const DeletedNotes = () => {
@@ -24,7 +23,6 @@ const DeletedNotes = () => {
       <Grid container>
         {deletedNotes.length > 0 ? (
           deletedNotes.map((notesItem) => (
-            // <DeletedNoteCard notesItem={notesItem} />
             <NoteCardTemplate
               notesItem={notesItem}
               type="deleted-note-card"

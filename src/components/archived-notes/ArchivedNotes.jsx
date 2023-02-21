@@ -2,8 +2,6 @@ import { useContext } from "react";
 import { NotesDataContext } from "../context/NotesDataContextProvider";
 import EmptyArchivedNotes from "./EmptyArchivedNotes";
 import { Box, Grid } from "@mui/material";
-
-import ArchivedNoteCard from "./ArchivedNoteCard";
 import NoteCardTemplate from "../common/NoteCardTemplate";
 
 const ArchivedNotes = () => {
@@ -11,7 +9,7 @@ const ArchivedNotes = () => {
 
   return (
     <Box
-      id="div4-create-note-and-saved-notes"
+      id="notes-grid-container"
       sx={{
         display: "flex",
         flexDirection: "column",
@@ -24,7 +22,6 @@ const ArchivedNotes = () => {
       <Grid container>
         {archivedNotes.length > 0 ? (
           archivedNotes.map((notesItem) => (
-            // <ArchivedNoteCard notesItem={notesItem} />
             <NoteCardTemplate
               notesItem={notesItem}
               type="archived-note-card"

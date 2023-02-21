@@ -65,7 +65,6 @@ const NoteCardTemplate = ({ notesItem, type }) => {
   };
 
   // DeletedNoteCard functions
-
   const handleDeleteForeverButton = (notesItem) => {
     removeFromDeletedNotes(notesItem);
   };
