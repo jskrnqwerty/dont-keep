@@ -26,7 +26,10 @@ const EmptyNotesTemplate = ({ destination }) => {
     >
       {/* Empty Notes */}
       {destination === "notes" && (
-        <Stack alignItems="center">
+        <Stack
+          alignItems="center"
+          sx={{ p: 5 }}
+        >
           <LightbulbIcon
             sx={{
               fontSize: "7rem",
@@ -50,7 +53,10 @@ const EmptyNotesTemplate = ({ destination }) => {
 
       {/* Empty Reminders */}
       {destination === "reminders" && (
-        <Stack alignItems="center">
+        <Stack
+          alignItems="center"
+          sx={{ p: 5 }}
+        >
           <RemindersIcon
             sx={{
               fontSize: "7rem",
@@ -70,7 +76,10 @@ const EmptyNotesTemplate = ({ destination }) => {
 
       {/* Empty Edit labels */}
       {destination === "edit-labels" && (
-        <Stack alignItems="center">
+        <Stack
+          alignItems="center"
+          sx={{ p: 5 }}
+        >
           <EditLabelsIcon
             sx={{
               fontSize: "7rem",
@@ -90,7 +99,10 @@ const EmptyNotesTemplate = ({ destination }) => {
 
       {/* Empty Archive */}
       {destination === "archive" && (
-        <Stack alignItems="center">
+        <Stack
+          alignItems="center"
+          sx={{ p: 5 }}
+        >
           <ArchiveIcon
             sx={{
               fontSize: "7rem",
@@ -107,12 +119,15 @@ const EmptyNotesTemplate = ({ destination }) => {
 
       {/* Empty Bin */}
       {destination === "bin" && (
-        <Stack alignItems="center">
+        <Stack
+          alignItems="center"
+          sx={{ p: 5 }}
+        >
           <DeleteIcon
             sx={{
               fontSize: "7rem",
               margin: "auto",
-              marginTop: "36vh",
+              marginTop: "26vh",
               color: "#E0E0E0",
             }}
           />

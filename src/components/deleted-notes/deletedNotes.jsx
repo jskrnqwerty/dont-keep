@@ -1,6 +1,5 @@
 import { useContext } from "react";
 import { NotesDataContext } from "../context/NotesDataContextProvider";
-// import EmptyDeletedNotes from "./EmptyDeletedNotes";
 import { Box, Grid } from "@mui/material";
 import NoteCardTemplate from "../templates/NoteCardTemplate";
 import EmptyNotesTemplate from "../templates/EmptyNotesTemplate";
@@ -29,7 +28,6 @@ const DeletedNotes = () => {
             />
           ))
         ) : (
-          // <EmptyDeletedNotes />
           <EmptyNotesTemplate destination="bin" />
         )}
       </Grid>

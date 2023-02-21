@@ -2,7 +2,6 @@ import { useContext } from "react";
 import { Box } from "@mui/material";
 import Grid2 from "@mui/material/Unstable_Grid2"; // Grid version 2
 import { NotesDataContext } from "../context/NotesDataContextProvider";
-// import EmptyNotes from "./EmptyNotes";
 import CreateNote from "./CreateNote";
 import EditNote from "../edit-note-card/EditNoteCard";
 import NoteCardTemplate from "../templates/NoteCardTemplate";
@@ -47,7 +46,6 @@ const Notes = () => {
             </Grid2>
           ))
         ) : (
-          // <EmptyNotes />
           <EmptyNotesTemplate destination="notes" />
         )}
       </Grid2>
