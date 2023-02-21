@@ -14,11 +14,32 @@ const Notes = () => {
       <CreateNote />
       <Grid2
         container
-        gap="1px"
-        sx={{ marginTop: "30px", marginX: "30px", padding: "10px" }}
+        display="flex"
+        gap={2}
+        sx={{ marginTop: "30px", marginX: "10px", padding: "10px" }}
+        maxWidth="99%"
+        minWidth="90%"
+        alignSelf="center"
+        alignItems="left"
       >
         {notes.length > 0 ? (
-          notes.map((notesItem) => <NoteCard notesItem={notesItem} />)
+          notes.map((notesItem) => (
+            <Grid2
+              item
+              maxWidth="240px"
+              // xs={12}
+              // sm={8}
+              // md={4}
+              // lg={2}
+              // xl={2}
+              sx={{
+                outline: "1px solid lightgrey",
+                borderRadius: "5px",
+              }}
+            >
+              <NoteCard notesItem={notesItem} />
+            </Grid2>
+          ))
         ) : (
           <EmptyNotes />
         )}

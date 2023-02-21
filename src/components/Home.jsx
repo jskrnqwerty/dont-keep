@@ -8,17 +8,28 @@ import Notes from "./notes/Notes";
 import ArchivedNotes from "./archived-notes/ArchivedNotes";
 import DeletedNotes from "./deleted-notes/DeletedNotes";
 import HoverDrawer from "./drawer/HoverDrawer";
+import { DrawerStateContext } from "./context/DrawerStateProvider";
+import { useContext } from "react";
 
 const Home = () => {
+  const { open } = useContext(DrawerStateContext);
   return (
     <Router>
       <HeaderBar />
-      <Box sx={{ display: "block" }}>
-        <HoverDrawer id="hover-drawer" />
-      </Box>
-      <Box sx={{ display: "flex" }}>
-        <Drawer id="drawer" />
+      {!open && (
+        <Box
+          id="hover-drawer"
+          sx={{ display: "block" }}
+        >
+          <HoverDrawer />
+        </Box>
+      )}
 
+      <Box
+        id="drawer"
+        sx={{ display: "flex" }}
+      >
+        <Drawer />
         <Routes>
           <Route
             path="/"

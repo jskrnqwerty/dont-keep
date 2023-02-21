@@ -1,12 +1,12 @@
 import { useState, useContext, useRef } from "react";
 import styled from "@emotion/styled";
-import { Box, ClickAwayListener, TextField } from "@mui/material";
+import { Box, ClickAwayListener, TextField, Stack } from "@mui/material";
 import { NotesDataContext } from "../context/NotesDataContextProvider";
 import { v4 as uuid } from "uuid";
 
 const TextFieldStyled = styled(TextField)`
   padding: 0.5rem 1rem;
-  width: 600px;
+  width: "100%;
 `;
 
 const CreateNote = () => {
@@ -51,40 +51,49 @@ const CreateNote = () => {
     <ClickAwayListener onClickAway={handleClickAway}>
       <Box
         id="div5-create-note-fields"
-        margin="auto"
         sx={{
-          borderRadius: 2,
-          boxShadow: "0px 1px 4px 1px #5A5A5A5A",
-          display: "flex",
-          flexDirection: "column",
-          mt: "95px",
+          // display: "flex",
+          // flexDirection: "column",
+          mx: 2.5,
         }}
       >
-        {showTitle && (
+        <Stack
+          margin="auto"
+          sx={{
+            maxWidth: "600px",
+            borderRadius: 2,
+            boxShadow: "0px 1px 4px 1px #5A5A5A5A",
+            mt: "95px",
+            mx: "auto",
+            alignSelf: "center",
+          }}
+        >
+          {showTitle && (
+            <TextFieldStyled
+              id="title-field"
+              variant="standard"
+              placeholder="Title"
+              InputProps={{ disableUnderline: true }}
+              onChange={handleTitleInput}
+              value={noteTitle}
+              // onKeyDown={(e) => handleEnterKeyPress(e)}
+              // Title field is multiline but focus switches to note body when Enter is hit
+              multiline
+            />
+          )}
           <TextFieldStyled
-            id="title-field"
+            id="note-field"
             variant="standard"
-            placeholder="Title"
+            placeholder="Take a note..."
+            ref={ref}
             InputProps={{ disableUnderline: true }}
-            onChange={handleTitleInput}
-            value={noteTitle}
-            // onKeyDown={(e) => handleEnterKeyPress(e)}
-            // Title field is multiline but focus switches to note body when Enter is hit
+            onClick={() => setShowTitle(true)}
+            onChange={handleInfoInput}
+            value={noteInfo}
+            autoFocus
             multiline
           />
-        )}
-        <TextFieldStyled
-          id="note-field"
-          variant="standard"
-          placeholder="Take a note..."
-          ref={ref}
-          InputProps={{ disableUnderline: true }}
-          onClick={() => setShowTitle(true)}
-          onChange={handleInfoInput}
-          value={noteInfo}
-          autoFocus
-          multiline
-        />
+        </Stack>
       </Box>
     </ClickAwayListener>
   );

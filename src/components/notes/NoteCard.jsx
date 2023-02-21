@@ -36,8 +36,8 @@ const NoteCard = ({ notesItem }) => {
   return (
     <Card
       sx={{
-        m: "0.3rem",
-        width: "240px",
+        maxHeight: "100%",
+        minWidth: "240px",
         outline: "1px solid lightgrey",
         borderRadius: "5px",
         "&: hover": {
@@ -46,7 +46,9 @@ const NoteCard = ({ notesItem }) => {
       }}
     >
       <CardContent>
-        <Typography gutterBottom>{notesItem.title}</Typography>
+        {notesItem.title && (
+          <Typography gutterBottom>{notesItem.title}</Typography>
+        )}
         <Typography
           color="text.secondary"
           noWrap="false"

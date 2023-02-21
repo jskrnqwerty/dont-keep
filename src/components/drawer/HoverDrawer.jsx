@@ -39,6 +39,7 @@ const HoverDrawerStyled = styled(MuiDrawer, {
   boxSizing: "border-box",
   // to keep the drawer layer underneath the header layer
   zIndex: 1,
+
   ...(open && {
     ...openedMixin(theme),
     "& .MuiDrawer-paper": openedMixin(theme),
