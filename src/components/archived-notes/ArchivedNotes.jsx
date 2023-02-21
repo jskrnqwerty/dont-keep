@@ -1,8 +1,9 @@
 import { useContext } from "react";
 import { NotesDataContext } from "../context/NotesDataContextProvider";
-import EmptyArchivedNotes from "./EmptyArchivedNotes";
+// import EmptyArchivedNotes from "./EmptyArchivedNotes";
 import { Box, Grid } from "@mui/material";
-import NoteCardTemplate from "../common/NoteCardTemplate";
+import NoteCardTemplate from "../templates/NoteCardTemplate";
+import EmptyNotesTemplate from "../templates/EmptyNotesTemplate";
 
 const ArchivedNotes = () => {
   const { archivedNotes } = useContext(NotesDataContext);
@@ -24,11 +25,12 @@ const ArchivedNotes = () => {
           archivedNotes.map((notesItem) => (
             <NoteCardTemplate
               notesItem={notesItem}
-              type="archived-note-card"
+              destination="archive"
             />
           ))
         ) : (
-          <EmptyArchivedNotes />
+          // <EmptyArchivedNotes />
+          <EmptyNotesTemplate destination="archive" />
         )}
       </Grid>
     </Box>
@@ -36,3 +38,5 @@ const ArchivedNotes = () => {
 };
 
 export default ArchivedNotes;
+
+// destination prop takes in notes, reminders, edit-labels, archive, bin

@@ -2,10 +2,11 @@ import { useContext } from "react";
 import { Box } from "@mui/material";
 import Grid2 from "@mui/material/Unstable_Grid2"; // Grid version 2
 import { NotesDataContext } from "../context/NotesDataContextProvider";
-import EmptyNotes from "./EmptyNotes";
+// import EmptyNotes from "./EmptyNotes";
 import CreateNote from "./CreateNote";
 import EditNote from "../edit-note-card/EditNoteCard";
-import NoteCardTemplate from "../common/NoteCardTemplate";
+import NoteCardTemplate from "../templates/NoteCardTemplate";
+import EmptyNotesTemplate from "../templates/EmptyNotesTemplate";
 
 const Notes = () => {
   const { notes } = useContext(NotesDataContext);
@@ -41,12 +42,13 @@ const Notes = () => {
             >
               <NoteCardTemplate
                 notesItem={notesItem}
-                type="notes-note-card"
+                destination="notes"
               />
             </Grid2>
           ))
         ) : (
-          <EmptyNotes />
+          // <EmptyNotes />
+          <EmptyNotesTemplate destination="notes" />
         )}
       </Grid2>
     </Box>
@@ -54,3 +56,5 @@ const Notes = () => {
 };
 
 export default Notes;
+
+// destination prop takes in notes, reminders, edit-labels, archive, bin

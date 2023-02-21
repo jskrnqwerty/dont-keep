@@ -1,8 +1,13 @@
-import { Box } from "@mui/material";
-import EmptyEditLabels from "./EmptyEditLabels";
+import EmptyNotesTemplate from "../templates/EmptyNotesTemplate";
+// import EmptyEditLabels from "./EmptyEditLabels";
 
 const EditLabels = () => {
-  return <EmptyEditLabels />;
+  return (
+    <>
+      {/* <EmptyEditLabels /> */}
+      <EmptyNotesTemplate destination="edit-labels" />
+    </>
+  );
 };
 
 export default EditLabels;

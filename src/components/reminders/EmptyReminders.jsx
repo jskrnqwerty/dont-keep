@@ -12,10 +12,10 @@ const EmptyReminders = () => {
         px: 5,
       }}
     >
-      <RemindersIcon
-        sx={{ fontSize: "7rem", margin: "auto", color: "#E0E0E0" }}
-      />
       <Stack alignItems="center">
+        <RemindersIcon
+          sx={{ fontSize: "7rem", margin: "auto", color: "#E0E0E0" }}
+        />
         <Typography sx={{ fontSize: "1.4rem", color: "#5A5A5A", mt: "1rem" }}>
           Notes with upcoming reminders appear here
         </Typography>

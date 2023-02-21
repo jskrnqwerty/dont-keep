@@ -16,8 +16,8 @@ import {
   RestoreFromTrashOutlined as RestoreIcon,
 } from "@mui/icons-material";
 
-// type prop's options are "notes-note-card, archived-note-card, deleted-note-card"
-const NoteCardTemplate = ({ notesItem, type }) => {
+// destination prop takes in notes, reminders, edit-labels, archive, bin
+const NoteCardTemplate = ({ notesItem, destination }) => {
   //NoteCard
   const [isCardActionsVisible, setIsCardActionsVisible] = useState(false);
 
@@ -119,14 +119,14 @@ const NoteCardTemplate = ({ notesItem, type }) => {
         }}
       >
         {/* NotesNoteCard */}
-        {type === "notes-note-card" && (
+        {destination === "notes" && (
           <IconButton onClick={() => handleArchiveButton(notesItem)}>
             <Tooltip title="Archive">
               <ArchiveIcon fontSize="small" />
             </Tooltip>
           </IconButton>
         )}
-        {type === "notes-note-card" && (
+        {destination === "notes" && (
           <IconButton onClick={() => handleDeleteButtonInNotes(notesItem)}>
             <Tooltip title="Delete">
               <DeleteIcon fontSize="small" />
@@ -135,14 +135,14 @@ const NoteCardTemplate = ({ notesItem, type }) => {
         )}
 
         {/* ArchivedNoteCard */}
-        {type === "archived-note-card" && (
+        {destination === "archive" && (
           <IconButton onClick={() => handleUnarchiveButton(notesItem)}>
             <Tooltip title="Unarchive">
               <UnarchiveIcon fontSize="small" />
             </Tooltip>
           </IconButton>
         )}
-        {type === "archived-note-card" && (
+        {destination === "archive" && (
           <IconButton onClick={() => handleDeleteButtonInArchive(notesItem)}>
             <Tooltip title="Delete">
               <DeleteIcon fontSize="small" />
@@ -151,14 +151,14 @@ const NoteCardTemplate = ({ notesItem, type }) => {
         )}
 
         {/* DeletedNoteCard */}
-        {type === "deleted-note-card" && (
+        {destination === "bin" && (
           <IconButton onClick={() => handleDeleteForeverButton(notesItem)}>
             <Tooltip title="Delete Forever">
               <DeleteForeverIcon fontSize="small" />
             </Tooltip>
           </IconButton>
         )}
-        {type === "deleted-note-card" && (
+        {destination === "bin" && (
           <IconButton onClick={() => handleRestoreButton(notesItem)}>
             <Tooltip title="Restore">
               <RestoreIcon fontSize="small" />

@@ -1,9 +1,9 @@
 import { useContext } from "react";
 import { NotesDataContext } from "../context/NotesDataContextProvider";
-import EmptyDeletedNotes from "./EmptyDeletedNotes";
+// import EmptyDeletedNotes from "./EmptyDeletedNotes";
 import { Box, Grid } from "@mui/material";
-
-import NoteCardTemplate from "../common/NoteCardTemplate";
+import NoteCardTemplate from "../templates/NoteCardTemplate";
+import EmptyNotesTemplate from "../templates/EmptyNotesTemplate";
 
 const DeletedNotes = () => {
   const { deletedNotes } = useContext(NotesDataContext);
@@ -25,11 +25,12 @@ const DeletedNotes = () => {
           deletedNotes.map((notesItem) => (
             <NoteCardTemplate
               notesItem={notesItem}
-              type="deleted-note-card"
+              destination="bin"
             />
           ))
         ) : (
-          <EmptyDeletedNotes />
+          // <EmptyDeletedNotes />
+          <EmptyNotesTemplate destination="bin" />
         )}
       </Grid>
     </Box>
@@ -37,3 +38,5 @@ const DeletedNotes = () => {
 };
 
 export default DeletedNotes;
+
+// destination prop takes in notes, reminders, edit-labels, archive, bin
