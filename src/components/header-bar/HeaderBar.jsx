@@ -4,7 +4,7 @@ import Toolbar from "@mui/material/Toolbar";
 import IconButton from "@mui/material/IconButton";
 import MenuIcon from "@mui/icons-material/Menu";
 import { Tooltip } from "@mui/material";
-import Logo from "./Logo";
+import Heading from "./Heading";
 import { useContext } from "react";
 import { DrawerStateContext } from "../context/DrawerStateProvider";
 
@@ -33,7 +33,7 @@ const HeaderBar = () => {
               <MenuIcon />
             </Tooltip>
           </IconButton>
-          <Logo />
+          <Heading />
         </Toolbar>
       </HeaderBarStyled>
     </>

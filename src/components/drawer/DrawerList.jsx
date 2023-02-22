@@ -79,6 +79,8 @@ const DrawerList = () => {
                   minWidth: 0,
                   mr: open || openHover ? 3 : "auto",
                   justifyContent: "center",
+                  // bgcolor: "#feefc3",
+                  // borderRadius: "10px",
                 }}
               >
                 {menuItem.icon}

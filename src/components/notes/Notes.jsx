@@ -1,9 +1,9 @@
 import { useContext } from "react";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { Box } from "@mui/material";
 import Grid2 from "@mui/material/Unstable_Grid2"; // Grid version 2
 import { NotesDataContext } from "../context/NotesDataContextProvider";
 import CreateNote from "./CreateNote";
-import EditNote from "../edit-note-card/EditNoteCard";
 import NoteCardTemplate from "../templates/NoteCardTemplate";
 import EmptyNotesTemplate from "../templates/EmptyNotesTemplate";
 
@@ -17,18 +17,18 @@ const Notes = () => {
         container
         display="flex"
         gap={1.5}
-        sx={{ marginTop: "30px", marginX: "10px", padding: "10px" }}
         maxWidth="99%"
         minWidth="90%"
         alignSelf="center"
         alignItems="left"
+        sx={{ marginTop: "30px", marginX: "10px", padding: "10px" }}
       >
         {notes.length > 0 ? (
           notes.map((notesItem) => (
             <Grid2
               item
               maxWidth="240px"
-              onClick={() => <EditNote notesItem={notesItem} />}
+              // onClick={() => <EditNoteCard notesItem={notesItem} />}
               // xs={12}
               // sm={8}
               // md={4}

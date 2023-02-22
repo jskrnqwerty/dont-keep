@@ -98,12 +98,23 @@ const NoteCardTemplate = ({ notesItem, destination }) => {
     >
       <CardContent>
         {notesItem.title && (
-          <Typography gutterBottom>{notesItem.title}</Typography>
+          <Typography
+            gutterBottom
+            id="note-title"
+            px={1}
+          >
+            {notesItem.title}
+          </Typography>
         )}
         {notesItem.info && (
           <Typography
+            id="note-info"
+            gutterBottom
             color="text.secondary"
-            noWrap="false"
+            // noWrap={false}
+            wordWrap="break-word"
+            whiteSpace="pre-wrap"
+            px={1}
           >
             {notesItem.info}
           </Typography>
