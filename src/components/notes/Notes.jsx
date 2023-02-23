@@ -6,7 +6,6 @@ import CreateNote from "./CreateNote";
 import NoteCardTemplate from "../templates/NoteCardTemplate";
 import EmptyNotesTemplate from "../templates/EmptyNotesTemplate";
 import PinnedNotes from "./PinnedNotes";
-import EditNoteWindow from "../edit-note-window/EditNoteWindow";
 
 const Notes = () => {
   const { notes, pinnedNotes } = useContext(NotesDataContext);
@@ -58,7 +57,7 @@ const Notes = () => {
                 item
                 key={index}
                 maxWidth="240px"
-                onClick={() => <EditNoteWindow notesItem={notesItem} />}
+                // onClick={() => }
                 // xs={12}
                 // sx={{ outline: "1px solid grey" }}
               >

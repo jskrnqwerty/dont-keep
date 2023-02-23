@@ -17,10 +17,12 @@ import {
   PushPin as UnpinIcon,
   PushPinOutlined as PinIcon,
 } from "@mui/icons-material";
+import EditNoteWindow from "../edit-note-window/EditNoteWindow";
 
 // destination prop takes in notes, reminders, edit-labels, archive, bin
 const NoteCardTemplate = ({ notesItem, destination }) => {
   const [isCardActionsVisible, setIsCardActionsVisible] = useState(false);
+  const [openNote, setOpenNote] = useState(false);
 
   const {
     notes,
@@ -119,6 +121,7 @@ const NoteCardTemplate = ({ notesItem, destination }) => {
       // CardActions visible on hover
       onMouseEnter={() => setIsCardActionsVisible(true)}
       onMouseLeave={() => setIsCardActionsVisible(false)}
+      onClick={() => console.log("Card clicked")}
       sx={{
         maxHeight: "100%",
         minWidth: "240px",
@@ -159,7 +162,12 @@ const NoteCardTemplate = ({ notesItem, destination }) => {
         </CardActions>
       )}
 
-      <CardContent>
+      <CardContent
+        onClick={() => {
+          console.log("CardContent clicked");
+          setOpenNote(true);
+        }}
+      >
         {notesItem.title && (
           <Typography
             gutterBottom
@@ -183,6 +191,14 @@ const NoteCardTemplate = ({ notesItem, destination }) => {
           </Typography>
         )}
       </CardContent>
+
+      {/* The popup editable text window */}
+      <EditNoteWindow
+        notesItem={notesItem}
+        openNote={openNote}
+        setOpenNote={setOpenNote}
+      />
+
       <CardActions
         //visible on hover
         sx={{
