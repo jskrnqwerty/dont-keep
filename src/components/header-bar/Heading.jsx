@@ -1,5 +1,5 @@
 import { useLocation } from "react-router-dom";
-import { Typography } from "@mui/material";
+import { Typography, Box } from "@mui/material";
 
 const Heading = () => {
   const location = useLocation();
@@ -12,9 +12,14 @@ const Heading = () => {
   ];
   return (
     <>
-      {headings.map((headingsItem) =>
+      {headings.map((headingsItem, index) =>
         headingsItem.pathname === location.pathname ? (
-          <>
+          <Box
+            key={index}
+            display="flex"
+            flexDirection="row"
+            alignItems="center"
+          >
             {headingsItem.pathname === "/" && (
               <img
                 src="https://upload.wikimedia.org/wikipedia/commons/e/e5/Google_Keep_icon_%282020%29.svg"
@@ -30,7 +35,7 @@ const Heading = () => {
             >
               {headingsItem.headingText}
             </Typography>
-          </>
+          </Box>
         ) : (
           ""
         )

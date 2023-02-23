@@ -5,8 +5,7 @@ import { NotesDataContext } from "../context/NotesDataContextProvider";
 import { v4 as uuid } from "uuid";
 
 const TextFieldStyled = styled(TextField)`
-  padding: 0.5rem 1rem;
-  width: "100%;
+  padding: 0.4rem 1rem;
 `;
 
 const CreateNote = () => {
@@ -14,7 +13,13 @@ const CreateNote = () => {
   const [showTitle, setShowTitle] = useState(false);
   const [noteTitle, setNoteTitle] = useState("");
   const [noteInfo, setNoteInfo] = useState("");
-  const note = { id: uuid(), title: noteTitle, info: noteInfo };
+  const note = {
+    id: uuid(),
+    title: noteTitle,
+    info: noteInfo,
+    isNotePinned: false,
+    route: uuid(),
+  };
   const ref = useRef(null);
 
   const handleClickAway = () => {
@@ -48,18 +53,18 @@ const CreateNote = () => {
   // };
 
   return (
-    <ClickAwayListener onClickAway={handleClickAway}>
-      <Box
-        id="div5-create-note-fields"
-        sx={{ mx: 2.5 }}
-      >
+    <Box
+      id="div5-create-note-fields"
+      // sx={{ mx: 2.5 }}
+    >
+      <ClickAwayListener onClickAway={handleClickAway}>
         <Stack
           margin="auto"
           sx={{
             maxWidth: "600px",
             borderRadius: 2,
             boxShadow: "0px 1px 4px 1px #5A5A5A5A",
-            mt: "95px",
+            mt: "50px",
             mx: "auto",
             alignSelf: "center",
           }}
@@ -73,7 +78,7 @@ const CreateNote = () => {
               onChange={handleTitleInput}
               value={noteTitle}
               // onKeyDown={(e) => handleEnterKeyPress(e)}
-              // Title field is multiline but focus switches to note body when Enter is hit
+              // Title field is multiline but focus should switche to note body when Enter is hit
               multiline
             />
           )}
@@ -90,8 +95,8 @@ const CreateNote = () => {
             multiline
           />
         </Stack>
-      </Box>
-    </ClickAwayListener>
+      </ClickAwayListener>
+    </Box>
   );
 };
 

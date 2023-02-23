@@ -4,6 +4,7 @@ export const NotesDataContext = createContext(null);
 
 const NotesDataContextProvider = ({ children }) => {
   const [notes, setNotes] = useState([]);
+  const [pinnedNotes, setPinnedNotes] = useState([]);
   const [archivedNotes, setArchivedNotes] = useState([]);
   const [deletedNotes, setDeletedNotes] = useState([]);
 
@@ -12,6 +13,8 @@ const NotesDataContextProvider = ({ children }) => {
       value={{
         notes,
         setNotes,
+        pinnedNotes,
+        setPinnedNotes,
         archivedNotes,
         setArchivedNotes,
         deletedNotes,

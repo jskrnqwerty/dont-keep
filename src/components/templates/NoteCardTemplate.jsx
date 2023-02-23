@@ -14,16 +14,19 @@ import {
   UnarchiveOutlined as UnarchiveIcon,
   DeleteForeverOutlined as DeleteForeverIcon,
   RestoreFromTrashOutlined as RestoreIcon,
+  PushPin as UnpinIcon,
+  PushPinOutlined as PinIcon,
 } from "@mui/icons-material";
 
 // destination prop takes in notes, reminders, edit-labels, archive, bin
 const NoteCardTemplate = ({ notesItem, destination }) => {
-  //NoteCard
   const [isCardActionsVisible, setIsCardActionsVisible] = useState(false);
 
   const {
     notes,
     setNotes,
+    pinnedNotes,
+    setPinnedNotes,
     setArchivedNotes,
     archivedNotes,
     deletedNotes,
@@ -33,12 +36,22 @@ const NoteCardTemplate = ({ notesItem, destination }) => {
   // NotesNoteCard functions
   const handleArchiveButton = (notesItem) => {
     setArchivedNotes((prev) => [notesItem, ...prev]);
-    removeFromNotes(notesItem);
+    if (!notesItem.isNotePinned) {
+      removeFromNotes(notesItem);
+    } else {
+      removeFromPinnedNotes(notesItem);
+      notesItem.isNotePinned = false;
+    }
   };
 
   const handleDeleteButtonInNotes = (notesItem) => {
     setDeletedNotes((prev) => [notesItem, ...prev]);
-    removeFromNotes(notesItem);
+    if (!notesItem.isNotePinned) {
+      removeFromNotes(notesItem);
+    } else {
+      removeFromPinnedNotes(notesItem);
+      notesItem.isNotePinned = false;
+    }
   };
 
   const removeFromNotes = (notesItem) => {
@@ -46,7 +59,27 @@ const NoteCardTemplate = ({ notesItem, destination }) => {
     setNotes(updatedNotes);
   };
 
-  //ArchivedNoteCard functions
+  // PinnedNotes functions
+  const handlePinNoteButton = (notesItem) => {
+    setPinnedNotes([notesItem, ...pinnedNotes]);
+    removeFromNotes(notesItem);
+    // isNotePinned decides which type of pin button to show on individual note card
+    notesItem.isNotePinned = true;
+  };
+
+  const handleUnpinNoteButton = (noteItem) => {
+    removeFromPinnedNotes(noteItem);
+    setNotes([notesItem, ...notes]);
+    // isNotePinned decides which type of pin button to show on individual note card
+    notesItem.isNotePinned = false;
+  };
+
+  const removeFromPinnedNotes = (noteItem) => {
+    const updatedPinnedNotes = pinnedNotes.filter((item) => item !== noteItem);
+    setPinnedNotes(updatedPinnedNotes);
+  };
+
+  // ArchivedNoteCard functions
   const handleUnarchiveButton = (notesItem) => {
     setNotes((prev) => [notesItem, ...prev]);
     removeFromArchivedNotes(notesItem);
@@ -96,6 +129,36 @@ const NoteCardTemplate = ({ notesItem, destination }) => {
         },
       }}
     >
+      {destination === "notes" && (
+        <CardActions
+          sx={{
+            display: "inline-block",
+            float: "right",
+            color: "grey",
+            mt: "5px",
+            ml: "5px",
+            p: 0,
+            px: "3px",
+            visibility: (isCardActionsVisible && "visible") || "hidden",
+          }}
+        >
+          {!notesItem.isNotePinned && (
+            <IconButton onClick={() => handlePinNoteButton(notesItem)}>
+              <Tooltip title="Pin note">
+                <PinIcon />
+              </Tooltip>
+            </IconButton>
+          )}
+          {notesItem.isNotePinned && (
+            <IconButton onClick={() => handleUnpinNoteButton(notesItem)}>
+              <Tooltip title="Unpin note">
+                <UnpinIcon />
+              </Tooltip>
+            </IconButton>
+          )}
+        </CardActions>
+      )}
+
       <CardContent>
         {notesItem.title && (
           <Typography
@@ -112,7 +175,7 @@ const NoteCardTemplate = ({ notesItem, destination }) => {
             gutterBottom
             color="text.secondary"
             // noWrap={false}
-            wordWrap="break-word"
+            wordwrap="break-word"
             whiteSpace="pre-wrap"
             px={1}
           >
@@ -125,6 +188,7 @@ const NoteCardTemplate = ({ notesItem, destination }) => {
         sx={{
           visibility: (isCardActionsVisible && "visible") || "hidden",
           m: 0,
+          ml: 1.4,
           p: 0,
           px: "3px",
         }}
