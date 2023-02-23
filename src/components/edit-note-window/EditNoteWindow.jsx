@@ -1,4 +1,4 @@
-import { useRef, useState } from "react";
+import { useRef } from "react";
 import {
   Dialog,
   DialogTitle,
@@ -9,44 +9,43 @@ import {
 } from "@mui/material";
 
 const EditNoteWindow = ({ notesItem, openNote, setOpenNote }) => {
-  const [updatedTitle, setUpdatedTitle] = useState(notesItem.title);
-  const [updatedInfo, setUpdatedInfo] = useState(notesItem.info);
-  const titleRef = useRef(null);
-  const infoRef = useRef(null);
+  const noteTitleRef = useRef(null);
+  const noteInfoRef = useRef(null);
+
+  const handleClose = () => {
+    setOpenNote(false);
+    notesItem.title = noteTitleRef.current.innerText;
+    notesItem.info = noteInfoRef.current.innerText;
+  };
 
   return (
     <Dialog
       open={openNote}
-      onClose={() => setOpenNote(false)}
+      onClose={() => handleClose()}
       sx={{
         wordBreak: "break-word",
         whiteSpace: "break-spaces",
       }}
-      contentEditable={true}
     >
       <DialogTitle
-        ref={titleRef}
-        // value={updatedTitle}
-        onChange={(e) => {
-          setUpdatedTitle(e.target.value);
-          console.log("e: ", e);
-        }}
+        ref={noteTitleRef}
+        contentEditable={true}
       >
-        {updatedTitle}
+        {notesItem.title}
       </DialogTitle>
       <DialogContent>
-        <DialogContentText ref={infoRef}>{updatedInfo}</DialogContentText>
+        <DialogContentText
+          ref={noteInfoRef}
+          contentEditable={true}
+        >
+          {notesItem.info}
+        </DialogContentText>
       </DialogContent>
       <DialogActions>
         <Button
           variant="text"
-          onClick={(e) => {
-            setOpenNote(false);
-            console.log("titleRef: ", titleRef);
-            console.log("titleRef.current: ", titleRef.current);
-            console.log("titleRef.current.value: ", titleRef.current.value);
-            // setUpdatedTitle;
-          }}
+          onClick={() => handleClose()}
+          sx={{ color: "black" }}
         >
           Close
         </Button>

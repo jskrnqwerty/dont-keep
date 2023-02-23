@@ -146,18 +146,18 @@ const NoteCardTemplate = ({ notesItem, destination }) => {
           }}
         >
           {!notesItem.isNotePinned && (
-            <IconButton onClick={() => handlePinNoteButton(notesItem)}>
-              <Tooltip title="Pin note">
+            <Tooltip title="Pin note">
+              <IconButton onClick={() => handlePinNoteButton(notesItem)}>
                 <PinIcon />
-              </Tooltip>
-            </IconButton>
+              </IconButton>
+            </Tooltip>
           )}
           {notesItem.isNotePinned && (
-            <IconButton onClick={() => handleUnpinNoteButton(notesItem)}>
-              <Tooltip title="Unpin note">
+            <Tooltip title="Unpin note">
+              <IconButton onClick={() => handleUnpinNoteButton(notesItem)}>
                 <UnpinIcon />
-              </Tooltip>
-            </IconButton>
+              </IconButton>
+            </Tooltip>
           )}
         </CardActions>
       )}
@@ -211,50 +211,50 @@ const NoteCardTemplate = ({ notesItem, destination }) => {
       >
         {/* NotesNoteCard */}
         {destination === "notes" && (
-          <IconButton onClick={() => handleArchiveButton(notesItem)}>
-            <Tooltip title="Archive">
+          <Tooltip title="Archive">
+            <IconButton onClick={() => handleArchiveButton(notesItem)}>
               <ArchiveIcon fontSize="small" />
-            </Tooltip>
-          </IconButton>
+            </IconButton>
+          </Tooltip>
         )}
         {destination === "notes" && (
-          <IconButton onClick={() => handleDeleteButtonInNotes(notesItem)}>
-            <Tooltip title="Delete">
+          <Tooltip title="Delete">
+            <IconButton onClick={() => handleDeleteButtonInNotes(notesItem)}>
               <DeleteIcon fontSize="small" />
-            </Tooltip>
-          </IconButton>
+            </IconButton>
+          </Tooltip>
         )}
 
         {/* ArchivedNoteCard */}
         {destination === "archive" && (
-          <IconButton onClick={() => handleUnarchiveButton(notesItem)}>
-            <Tooltip title="Unarchive">
+          <Tooltip title="Unarchive">
+            <IconButton onClick={() => handleUnarchiveButton(notesItem)}>
               <UnarchiveIcon fontSize="small" />
-            </Tooltip>
-          </IconButton>
+            </IconButton>
+          </Tooltip>
         )}
         {destination === "archive" && (
-          <IconButton onClick={() => handleDeleteButtonInArchive(notesItem)}>
-            <Tooltip title="Delete">
+          <Tooltip title="Delete">
+            <IconButton onClick={() => handleDeleteButtonInArchive(notesItem)}>
               <DeleteIcon fontSize="small" />
-            </Tooltip>
-          </IconButton>
+            </IconButton>
+          </Tooltip>
         )}
 
         {/* DeletedNoteCard */}
         {destination === "bin" && (
-          <IconButton onClick={() => handleDeleteForeverButton(notesItem)}>
-            <Tooltip title="Delete Forever">
+          <Tooltip title="Delete Forever">
+            <IconButton onClick={() => handleDeleteForeverButton(notesItem)}>
               <DeleteForeverIcon fontSize="small" />
-            </Tooltip>
-          </IconButton>
+            </IconButton>
+          </Tooltip>
         )}
         {destination === "bin" && (
-          <IconButton onClick={() => handleRestoreButton(notesItem)}>
-            <Tooltip title="Restore">
+          <Tooltip title="Restore">
+            <IconButton onClick={() => handleRestoreButton(notesItem)}>
               <RestoreIcon fontSize="small" />
-            </Tooltip>
-          </IconButton>
+            </IconButton>
+          </Tooltip>
         )}
       </CardActions>
     </Card>
