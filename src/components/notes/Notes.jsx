@@ -10,6 +10,16 @@ import PinnedNotes from "./PinnedNotes";
 const Notes = () => {
   const { notes, pinnedNotes } = useContext(NotesDataContext);
 
+  const handleDragStart = (e, index) => {
+    console.log("Drag start, index: ", index);
+  };
+  const handleDragEnter = (e, index) => {
+    console.log("Drag enter: index: ", index);
+  };
+  const handleDragEnd = (e, index) => {
+    console.log("Drag end: index: ", index);
+  };
+
   return (
     <Box
       sx={{
@@ -55,11 +65,13 @@ const Notes = () => {
             notes.map((notesItem, index) => (
               <Grid2
                 item
+                draggable
+                onDragStart={(e) => handleDragStart(e, index)}
+                onDragEnter={(e) => handleDragEnter(e, index)}
+                onDragEnd={(e) => handleDragEnd(e, index)}
+                // cursor="move"
                 key={index}
                 maxWidth="240px"
-                // onClick={() => }
-                // xs={12}
-                // sx={{ outline: "1px solid grey" }}
               >
                 <NoteCardTemplate
                   notesItem={notesItem}

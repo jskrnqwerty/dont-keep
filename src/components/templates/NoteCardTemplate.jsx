@@ -37,7 +37,13 @@ const NoteCardTemplate = ({ notesItem, destination }) => {
 
   // NotesNoteCard functions
   const handleArchiveButton = (notesItem) => {
+    // update currList and currDestination inside notesItem
+    notesItem.currList = "archive";
+    notesItem.currDestination = "archive";
+    console.log(notesItem);
+
     setArchivedNotes((prev) => [notesItem, ...prev]);
+
     if (!notesItem.isNotePinned) {
       removeFromNotes(notesItem);
     } else {
@@ -47,6 +53,11 @@ const NoteCardTemplate = ({ notesItem, destination }) => {
   };
 
   const handleDeleteButtonInNotes = (notesItem) => {
+    // update currList and currDestination inside notesItem
+    notesItem.currList = "bin";
+    notesItem.currDestination = "bin";
+    console.log(notesItem);
+
     setDeletedNotes((prev) => [notesItem, ...prev]);
     if (!notesItem.isNotePinned) {
       removeFromNotes(notesItem);
@@ -63,6 +74,11 @@ const NoteCardTemplate = ({ notesItem, destination }) => {
 
   // PinnedNotes functions
   const handlePinNoteButton = (notesItem) => {
+    // update currList and currDestination inside notesItem
+    notesItem.currList = "pinned";
+    notesItem.currDestination = "notes";
+    console.log(notesItem);
+
     setPinnedNotes([notesItem, ...pinnedNotes]);
     removeFromNotes(notesItem);
     // isNotePinned decides which type of pin button to show on individual note card
@@ -70,6 +86,11 @@ const NoteCardTemplate = ({ notesItem, destination }) => {
   };
 
   const handleUnpinNoteButton = (noteItem) => {
+    // update currList and currDestination inside notesItem
+    notesItem.currList = "notes";
+    notesItem.currDestination = "notes";
+    console.log(notesItem);
+
     removeFromPinnedNotes(noteItem);
     setNotes([notesItem, ...notes]);
     // isNotePinned decides which type of pin button to show on individual note card
@@ -77,17 +98,27 @@ const NoteCardTemplate = ({ notesItem, destination }) => {
   };
 
   const removeFromPinnedNotes = (noteItem) => {
-    const updatedPinnedNotes = pinnedNotes.filter((item) => item !== noteItem);
+    const updatedPinnedNotes = pinnedNotes.filter((item) => item !== notesItem);
     setPinnedNotes(updatedPinnedNotes);
   };
 
   // ArchivedNoteCard functions
   const handleUnarchiveButton = (notesItem) => {
+    // update currList and currDestination inside notesItem
+    notesItem.currList = "notes";
+    notesItem.currDestination = "notes";
+    console.log(notesItem);
+
     setNotes((prev) => [notesItem, ...prev]);
     removeFromArchivedNotes(notesItem);
   };
 
   const handleDeleteButtonInArchive = (notesItem) => {
+    // update currList and currDestination inside notesItem
+    notesItem.currList = "bin";
+    notesItem.currDestination = "bin";
+    console.log(notesItem);
+
     setDeletedNotes((prev) => [notesItem, ...prev]);
     removeFromArchivedNotes(notesItem);
   };
@@ -105,6 +136,11 @@ const NoteCardTemplate = ({ notesItem, destination }) => {
   };
 
   const handleRestoreButton = (notesItem) => {
+    // update currList and currDestination inside notesItem
+    notesItem.currList = "notes";
+    notesItem.currDestination = "notes";
+    console.log(notesItem);
+
     setNotes((prev) => [notesItem, ...prev]);
     removeFromDeletedNotes(notesItem);
   };
@@ -115,6 +151,28 @@ const NoteCardTemplate = ({ notesItem, destination }) => {
     );
     setDeletedNotes(updatedDeletedNotes);
   };
+
+  // const remove = (notesItem) => {
+  //   if (notesItem.currList === "notes") {
+  //     const updatedNotes = notes.filter((item) => item !== notesItem);
+  //     setNotes(updatedNotes);
+  //   } else if (notesItem.currList === "pinned") {
+  //     const updatedPinnedNotes = pinnedNotes.filter(
+  //       (item) => item !== notesItem
+  //     );
+  //     setPinnedNotes(updatedPinnedNotes);
+  //   } else if (notesItem.currList === "archive") {
+  //     const updatedArchivedNotes = archivedNotes.filter(
+  //       (item) => item !== notesItem
+  //     );
+  //     setArchivedNotes(updatedArchivedNotes);
+  //   } else if (notesItem.currList === "bin") {
+  //     const updatedDeletedNotes = deletedNotes.filter(
+  //       (item) => item !== notesItem
+  //     );
+  //     setDeletedNotes(updatedDeletedNotes);
+  //   }
+  // };
 
   return (
     <Card
@@ -212,7 +270,12 @@ const NoteCardTemplate = ({ notesItem, destination }) => {
         {/* NotesNoteCard */}
         {destination === "notes" && (
           <Tooltip title="Archive">
-            <IconButton onClick={() => handleArchiveButton(notesItem)}>
+            <IconButton
+              onClick={() => {
+                console.log("notesItem.currList: ", notesItem.currList);
+                handleArchiveButton(notesItem);
+              }}
+            >
               <ArchiveIcon fontSize="small" />
             </IconButton>
           </Tooltip>

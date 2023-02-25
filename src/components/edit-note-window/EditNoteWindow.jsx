@@ -29,14 +29,14 @@ const EditNoteWindow = ({ notesItem, openNote, setOpenNote }) => {
     >
       <DialogTitle
         ref={noteTitleRef}
-        contentEditable={true}
+        contentEditable={notesItem.currDestination === "bin" ? false : true}
       >
         {notesItem.title}
       </DialogTitle>
       <DialogContent>
         <DialogContentText
           ref={noteInfoRef}
-          contentEditable={true}
+          contentEditable={notesItem.currDestination !== "bin" ? true : false}
         >
           {notesItem.info}
         </DialogContentText>

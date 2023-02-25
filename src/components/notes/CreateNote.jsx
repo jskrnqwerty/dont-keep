@@ -13,12 +13,15 @@ const CreateNote = () => {
   const [showTitle, setShowTitle] = useState(false);
   const [noteTitle, setNoteTitle] = useState("");
   const [noteInfo, setNoteInfo] = useState("");
+  // currtList to take any of the following inputs:
+  // notes, pinned, archive, bin
   const note = {
     id: uuid(),
     title: noteTitle,
     info: noteInfo,
     isNotePinned: false,
-    route: uuid(),
+    currList: "notes",
+    currDestination: "notes",
   };
   const ref = useRef(null);
 
