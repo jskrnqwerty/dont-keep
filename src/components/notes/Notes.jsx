@@ -1,25 +1,8 @@
-import { useContext } from "react";
-import { Box, Typography } from "@mui/material";
-import Grid2 from "@mui/material/Unstable_Grid2"; // Grid version 2
-import { NotesDataContext } from "../context/NotesDataContextProvider";
+import { Box } from "@mui/material";
 import CreateNote from "./CreateNote";
-import NoteCardTemplate from "../templates/NoteCardTemplate";
-import EmptyNotesTemplate from "../templates/EmptyNotesTemplate";
-import PinnedNotes from "./PinnedNotes";
+import NotesArea from "./NotesArea";
 
 const Notes = () => {
-  const { notes, pinnedNotes } = useContext(NotesDataContext);
-
-  const handleDragStart = (e, index) => {
-    console.log("Drag start, index: ", index);
-  };
-  const handleDragEnter = (e, index) => {
-    console.log("Drag enter: index: ", index);
-  };
-  const handleDragEnd = (e, index) => {
-    console.log("Drag end: index: ", index);
-  };
-
   return (
     <Box
       sx={{
@@ -31,65 +14,9 @@ const Notes = () => {
       }}
     >
       <CreateNote />
-
-      <Box
-        sx={{
-          display: "flex",
-          flexDirection: "column",
-          marginTop: "50px",
-        }}
-      >
-        {pinnedNotes.length > 0 ? <PinnedNotes /> : ""}
-
-        {/* // display this only if any note is pinned */}
-        <Typography
-          fontSize="0.7rem"
-          letterSpacing="0.05rem"
-          paddingLeft="1.5rem"
-          marginBottom="0.5rem"
-          sx={{
-            color: "grey",
-            pb: "3px",
-            display:
-              pinnedNotes.length === 0 || notes.length === 0 ? "none" : "",
-          }}
-        >
-          OTHERS
-        </Typography>
-
-        <Grid2
-          container
-          gap={1.5}
-        >
-          {notes.length > 0 ? (
-            notes.map((notesItem, index) => (
-              <Grid2
-                item
-                draggable
-                onDragStart={(e) => handleDragStart(e, index)}
-                onDragEnter={(e) => handleDragEnter(e, index)}
-                onDragEnd={(e) => handleDragEnd(e, index)}
-                // cursor="move"
-                key={index}
-                maxWidth="240px"
-              >
-                <NoteCardTemplate
-                  notesItem={notesItem}
-                  destination="notes"
-                />
-              </Grid2>
-            ))
-          ) : pinnedNotes.length > 0 ? (
-            ""
-          ) : (
-            <EmptyNotesTemplate destination="notes" />
-          )}
-        </Grid2>
-      </Box>
+      <NotesArea />
     </Box>
   );
 };
 
 export default Notes;
-
-// destination prop takes in notes, reminders, edit-labels, archive, bin

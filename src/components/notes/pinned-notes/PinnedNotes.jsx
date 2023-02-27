@@ -1,8 +1,9 @@
 import Grid2 from "@mui/material/Unstable_Grid2/Grid2";
-import NoteCardTemplate from "../templates/NoteCardTemplate";
+import NoteCardTemplate from "../../templates/NoteCardTemplate";
 import { useContext } from "react";
-import { NotesDataContext } from "../context/NotesDataContextProvider";
-import { Box, Typography } from "@mui/material";
+import { NotesDataContext } from "../../context/NotesDataContextProvider";
+import { Box } from "@mui/material";
+import PinnedNotesGridHeading from "../grid-headings/PinnedNotesGridHeading";
 
 const PinnedNotes = () => {
   const { pinnedNotes } = useContext(NotesDataContext);
@@ -15,15 +16,7 @@ const PinnedNotes = () => {
         marginBottom: "70px",
       }}
     >
-      <Typography
-        fontSize="0.7rem"
-        letterSpacing="0.05rem"
-        paddingLeft="1.5rem"
-        marginBottom="0.5rem"
-        sx={{ color: "grey", pb: "3px" }}
-      >
-        PINNED
-      </Typography>
+      <PinnedNotesGridHeading />
       <Grid2
         container
         gap={1.5}
@@ -33,7 +26,6 @@ const PinnedNotes = () => {
             item
             key={index}
             maxWidth="240px"
-            // onClick={() => <EditNoteCard notesItem={notesItem} />}
           >
             <NoteCardTemplate
               notesItem={notesItem}

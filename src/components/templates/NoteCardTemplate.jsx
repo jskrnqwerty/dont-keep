@@ -175,152 +175,157 @@ const NoteCardTemplate = ({ notesItem, destination }) => {
   // };
 
   return (
-    <Card
-      // CardActions visible on hover
-      onMouseEnter={() => setIsCardActionsVisible(true)}
-      onMouseLeave={() => setIsCardActionsVisible(false)}
-      onClick={() => console.log("Card clicked")}
-      sx={{
-        maxHeight: "100%",
-        minWidth: "240px",
-        outline: "1px solid #E5E5E5",
-        borderRadius: "5px",
-        "&: hover": {
-          boxShadow: "1px 1px 5px 2px lightgrey",
-        },
-      }}
-    >
-      {destination === "notes" && (
-        <CardActions
-          sx={{
-            display: "inline-block",
-            float: "right",
-            color: "grey",
-            mt: "5px",
-            ml: "5px",
-            p: 0,
-            px: "3px",
-            visibility: (isCardActionsVisible && "visible") || "hidden",
+    <>
+      {console.log("NoteCardTemplate returned")}
+      <Card
+        // CardActions visible on hover
+        onMouseEnter={() => setIsCardActionsVisible(true)}
+        onMouseLeave={() => setIsCardActionsVisible(false)}
+        onClick={() => console.log("Card clicked")}
+        sx={{
+          maxHeight: "100%",
+          minWidth: "240px",
+          outline: "1px solid #E5E5E5",
+          borderRadius: "5px",
+          "&: hover": {
+            boxShadow: "1px 1px 5px 2px lightgrey",
+          },
+        }}
+      >
+        {destination === "notes" && (
+          <CardActions
+            sx={{
+              display: "inline-block",
+              float: "right",
+              color: "grey",
+              mt: "5px",
+              ml: "5px",
+              p: 0,
+              px: "3px",
+              visibility: (isCardActionsVisible && "visible") || "hidden",
+            }}
+          >
+            {!notesItem.isNotePinned && (
+              <Tooltip title="Pin note">
+                <IconButton onClick={() => handlePinNoteButton(notesItem)}>
+                  <PinIcon />
+                </IconButton>
+              </Tooltip>
+            )}
+            {notesItem.isNotePinned && (
+              <Tooltip title="Unpin note">
+                <IconButton onClick={() => handleUnpinNoteButton(notesItem)}>
+                  <UnpinIcon />
+                </IconButton>
+              </Tooltip>
+            )}
+          </CardActions>
+        )}
+
+        <CardContent
+          onClick={() => {
+            console.log("CardContent clicked");
+            setOpenNote(true);
           }}
         >
-          {!notesItem.isNotePinned && (
-            <Tooltip title="Pin note">
-              <IconButton onClick={() => handlePinNoteButton(notesItem)}>
-                <PinIcon />
+          {notesItem.title && (
+            <Typography
+              gutterBottom
+              id="note-title"
+              px={1}
+            >
+              {notesItem.title}
+            </Typography>
+          )}
+          {notesItem.info && (
+            <Typography
+              id="note-info"
+              gutterBottom
+              color="text.secondary"
+              // noWrap={false}
+              wordwrap="break-word"
+              whiteSpace="pre-wrap"
+              px={1}
+            >
+              {notesItem.info}
+            </Typography>
+          )}
+        </CardContent>
+
+        {/* The popup editable text window */}
+        <EditNoteWindow
+          notesItem={notesItem}
+          openNote={openNote}
+          setOpenNote={setOpenNote}
+        />
+
+        <CardActions
+          //visible on hover
+          sx={{
+            visibility: (isCardActionsVisible && "visible") || "hidden",
+            m: 0,
+            ml: 1.4,
+            p: 0,
+            px: "3px",
+          }}
+        >
+          {/* NotesNoteCard */}
+          {destination === "notes" && (
+            <Tooltip title="Archive">
+              <IconButton
+                onClick={() => {
+                  console.log("notesItem.currList: ", notesItem.currList);
+                  handleArchiveButton(notesItem);
+                }}
+              >
+                <ArchiveIcon fontSize="small" />
               </IconButton>
             </Tooltip>
           )}
-          {notesItem.isNotePinned && (
-            <Tooltip title="Unpin note">
-              <IconButton onClick={() => handleUnpinNoteButton(notesItem)}>
-                <UnpinIcon />
+          {destination === "notes" && (
+            <Tooltip title="Delete">
+              <IconButton onClick={() => handleDeleteButtonInNotes(notesItem)}>
+                <DeleteIcon fontSize="small" />
+              </IconButton>
+            </Tooltip>
+          )}
+
+          {/* ArchivedNoteCard */}
+          {destination === "archive" && (
+            <Tooltip title="Unarchive">
+              <IconButton onClick={() => handleUnarchiveButton(notesItem)}>
+                <UnarchiveIcon fontSize="small" />
+              </IconButton>
+            </Tooltip>
+          )}
+          {destination === "archive" && (
+            <Tooltip title="Delete">
+              <IconButton
+                onClick={() => handleDeleteButtonInArchive(notesItem)}
+              >
+                <DeleteIcon fontSize="small" />
+              </IconButton>
+            </Tooltip>
+          )}
+
+          {/* DeletedNoteCard */}
+          {destination === "bin" && (
+            <Tooltip title="Delete Forever">
+              <IconButton onClick={() => handleDeleteForeverButton(notesItem)}>
+                <DeleteForeverIcon fontSize="small" />
+              </IconButton>
+            </Tooltip>
+          )}
+          {destination === "bin" && (
+            <Tooltip title="Restore">
+              <IconButton onClick={() => handleRestoreButton(notesItem)}>
+                <RestoreIcon fontSize="small" />
               </IconButton>
             </Tooltip>
           )}
         </CardActions>
-      )}
-
-      <CardContent
-        onClick={() => {
-          console.log("CardContent clicked");
-          setOpenNote(true);
-        }}
-      >
-        {notesItem.title && (
-          <Typography
-            gutterBottom
-            id="note-title"
-            px={1}
-          >
-            {notesItem.title}
-          </Typography>
-        )}
-        {notesItem.info && (
-          <Typography
-            id="note-info"
-            gutterBottom
-            color="text.secondary"
-            // noWrap={false}
-            wordwrap="break-word"
-            whiteSpace="pre-wrap"
-            px={1}
-          >
-            {notesItem.info}
-          </Typography>
-        )}
-      </CardContent>
-
-      {/* The popup editable text window */}
-      <EditNoteWindow
-        notesItem={notesItem}
-        openNote={openNote}
-        setOpenNote={setOpenNote}
-      />
-
-      <CardActions
-        //visible on hover
-        sx={{
-          visibility: (isCardActionsVisible && "visible") || "hidden",
-          m: 0,
-          ml: 1.4,
-          p: 0,
-          px: "3px",
-        }}
-      >
-        {/* NotesNoteCard */}
-        {destination === "notes" && (
-          <Tooltip title="Archive">
-            <IconButton
-              onClick={() => {
-                console.log("notesItem.currList: ", notesItem.currList);
-                handleArchiveButton(notesItem);
-              }}
-            >
-              <ArchiveIcon fontSize="small" />
-            </IconButton>
-          </Tooltip>
-        )}
-        {destination === "notes" && (
-          <Tooltip title="Delete">
-            <IconButton onClick={() => handleDeleteButtonInNotes(notesItem)}>
-              <DeleteIcon fontSize="small" />
-            </IconButton>
-          </Tooltip>
-        )}
-
-        {/* ArchivedNoteCard */}
-        {destination === "archive" && (
-          <Tooltip title="Unarchive">
-            <IconButton onClick={() => handleUnarchiveButton(notesItem)}>
-              <UnarchiveIcon fontSize="small" />
-            </IconButton>
-          </Tooltip>
-        )}
-        {destination === "archive" && (
-          <Tooltip title="Delete">
-            <IconButton onClick={() => handleDeleteButtonInArchive(notesItem)}>
-              <DeleteIcon fontSize="small" />
-            </IconButton>
-          </Tooltip>
-        )}
-
-        {/* DeletedNoteCard */}
-        {destination === "bin" && (
-          <Tooltip title="Delete Forever">
-            <IconButton onClick={() => handleDeleteForeverButton(notesItem)}>
-              <DeleteForeverIcon fontSize="small" />
-            </IconButton>
-          </Tooltip>
-        )}
-        {destination === "bin" && (
-          <Tooltip title="Restore">
-            <IconButton onClick={() => handleRestoreButton(notesItem)}>
-              <RestoreIcon fontSize="small" />
-            </IconButton>
-          </Tooltip>
-        )}
-      </CardActions>
-    </Card>
+      </Card>
+    </>
   );
 };
 
