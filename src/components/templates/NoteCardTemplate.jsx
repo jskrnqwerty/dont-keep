@@ -1,154 +1,17 @@
 import { useContext, useState } from "react";
 import { NotesDataContext } from "../context/NotesDataContextProvider";
-import {
-  Typography,
-  Card,
-  CardContent,
-  CardActions,
-  IconButton,
-  Tooltip,
-} from "@mui/material";
-import {
-  ArchiveOutlined as ArchiveIcon,
-  DeleteOutline as DeleteIcon,
-  UnarchiveOutlined as UnarchiveIcon,
-  DeleteForeverOutlined as DeleteForeverIcon,
-  RestoreFromTrashOutlined as RestoreIcon,
-} from "@mui/icons-material";
-import EditNoteWindow from "../edit-note-window/EditNoteWindow";
-import PinNoteButton from "./card-actions/PinNoteButton";
+import { Typography, Card, CardContent } from "@mui/material";
+
+import EditNoteWindow from "../open-note-window/OpenNoteWindow";
+import PinNoteButton from "./note-actions/PinNoteButton";
+import BottomNoteActions from "./note-actions/BottomNoteActions";
 
 // destination prop takes in notes, reminders, edit-labels, archive, bin
 const NoteCardTemplate = ({ notesItem, destination }) => {
   const [isNoteHover, setIsNoteHover] = useState(false);
   const [isNoteOpen, setIsNoteOpen] = useState(false);
 
-  const {
-    notes,
-    setNotes,
-    pinnedNotes,
-    setPinnedNotes,
-    setArchivedNotes,
-    archivedNotes,
-    deletedNotes,
-    setDeletedNotes,
-    listOptions,
-    destinationOptions,
-  } = useContext(NotesDataContext);
-
-  // NotesNoteCard functions
-  const handleArchiveButton = (notesItem) => {
-    // update currList and currDest inside notesItem
-    notesItem.currList = listOptions.archive;
-    notesItem.currDest = destinationOptions.archive;
-    console.log(notesItem);
-
-    setArchivedNotes((prev) => [notesItem, ...prev]);
-
-    if (!notesItem.isNotePinned) {
-      removeFromNotes(notesItem);
-    } else {
-      removeFromPinnedNotes(notesItem);
-      notesItem.isNotePinned = false;
-    }
-  };
-
-  const handleDeleteButtonInNotes = (notesItem) => {
-    // update currList and currDest inside notesItem
-    notesItem.currList = listOptions.bin;
-    notesItem.currDest = destinationOptions.bin;
-    console.log(notesItem);
-
-    setDeletedNotes((prev) => [notesItem, ...prev]);
-    if (!notesItem.isNotePinned) {
-      removeFromNotes(notesItem);
-    } else {
-      removeFromPinnedNotes(notesItem);
-      notesItem.isNotePinned = false;
-    }
-  };
-
-  const removeFromNotes = (notesItem) => {
-    const updatedNotes = notes.filter((item) => item !== notesItem);
-    setNotes(updatedNotes);
-  };
-
-  const removeFromPinnedNotes = (notesItem) => {
-    const updatedPinnedNotes = pinnedNotes.filter((item) => item !== notesItem);
-    setPinnedNotes(updatedPinnedNotes);
-  };
-
-  // ArchivedNoteCard functions
-  const handleUnarchiveButton = (notesItem) => {
-    // update currList and currDest inside notesItem
-    notesItem.currList = listOptions.notes;
-    notesItem.currDest = destinationOptions.notes;
-    console.log(notesItem);
-
-    setNotes((prev) => [notesItem, ...prev]);
-    removeFromArchivedNotes(notesItem);
-  };
-
-  const handleDeleteButtonInArchive = (notesItem) => {
-    // update currList and currDest inside notesItem
-    notesItem.currList = listOptions.bin;
-    notesItem.currDest = destinationOptions.bin;
-    console.log(notesItem);
-
-    setDeletedNotes((prev) => [notesItem, ...prev]);
-    removeFromArchivedNotes(notesItem);
-  };
-
-  const removeFromArchivedNotes = (notesItem) => {
-    const updatedArchivedNotes = archivedNotes.filter(
-      (item) => item !== notesItem
-    );
-    setArchivedNotes(updatedArchivedNotes);
-  };
-
-  // DeletedNoteCard functions
-  const handleDeleteForeverButton = (notesItem) => {
-    removeFromDeletedNotes(notesItem);
-  };
-
-  const handleRestoreButton = (notesItem) => {
-    // update currList and currDest inside notesItem
-    notesItem.currList = listOptions.notes;
-    notesItem.currDest = destinationOptions.notes;
-    console.log(notesItem);
-
-    setNotes((prev) => [notesItem, ...prev]);
-    removeFromDeletedNotes(notesItem);
-  };
-
-  const removeFromDeletedNotes = (notesItem) => {
-    const updatedDeletedNotes = deletedNotes.filter(
-      (item) => item !== notesItem
-    );
-    setDeletedNotes(updatedDeletedNotes);
-  };
-
-  // const remove = (notesItem) => {
-  //   if (notesItem.currList === listOptions.notes) {
-  //     const updatedNotes = notes.filter((item) => item !== notesItem);
-  //     setNotes(updatedNotes);
-  //   } else if (notesItem.currList === listOptions.pinned) {
-  //     const updatedPinnedNotes = pinnedNotes.filter(
-  //       (item) => item !== notesItem
-  //     );
-  //     setPinnedNotes(updatedPinnedNotes);
-  //   } else if (notesItem.currList === listOptions.archive) {
-  //     const updatedArchivedNotes = archivedNotes.filter(
-  //       (item) => item !== notesItem
-  //     );
-  //     setArchivedNotes(updatedArchivedNotes);
-  //   } else if (notesItem.currList === listOptions.bin) {
-  //     const updatedDeletedNotes = deletedNotes.filter(
-  //       (item) => item !== notesItem
-  //     );
-  //     setDeletedNotes(updatedDeletedNotes);
-  //   }
-  // };
+  const { destinationOptions } = useContext(NotesDataContext);
 
   return (
     <>
@@ -217,79 +80,19 @@ const NoteCardTemplate = ({ notesItem, destination }) => {
             </Typography>
           )}
         </CardContent>
-
         {/* The popup editable text window */}
         <EditNoteWindow
           notesItem={notesItem}
           isNoteOpen={isNoteOpen}
           setIsNoteOpen={setIsNoteOpen}
+          destination={destination}
         />
-
-        <CardActions
-          //visible on hover
-          sx={{
-            visibility: (isNoteHover && "visible") || "hidden",
-            m: 0,
-            ml: 1.4,
-            p: 0,
-            px: "3px",
-          }}
-        >
-          {/* NotesNoteCard */}
-          {destination === destinationOptions.notes && (
-            <Tooltip title="Archive">
-              <IconButton
-                onClick={() => {
-                  console.log("notesItem.currList: ", notesItem.currList);
-                  handleArchiveButton(notesItem);
-                }}
-              >
-                <ArchiveIcon fontSize="small" />
-              </IconButton>
-            </Tooltip>
-          )}
-          {destination === destinationOptions.notes && (
-            <Tooltip title="Delete">
-              <IconButton onClick={() => handleDeleteButtonInNotes(notesItem)}>
-                <DeleteIcon fontSize="small" />
-              </IconButton>
-            </Tooltip>
-          )}
-
-          {/* ArchivedNoteCard */}
-          {destination === destinationOptions.archive && (
-            <Tooltip title="Unarchive">
-              <IconButton onClick={() => handleUnarchiveButton(notesItem)}>
-                <UnarchiveIcon fontSize="small" />
-              </IconButton>
-            </Tooltip>
-          )}
-          {destination === destinationOptions.archive && (
-            <Tooltip title="Delete">
-              <IconButton
-                onClick={() => handleDeleteButtonInArchive(notesItem)}
-              >
-                <DeleteIcon fontSize="small" />
-              </IconButton>
-            </Tooltip>
-          )}
-
-          {/* DeletedNoteCard */}
-          {destination === destinationOptions.bin && (
-            <Tooltip title="Delete Forever">
-              <IconButton onClick={() => handleDeleteForeverButton(notesItem)}>
-                <DeleteForeverIcon fontSize="small" />
-              </IconButton>
-            </Tooltip>
-          )}
-          {destination === destinationOptions.bin && (
-            <Tooltip title="Restore">
-              <IconButton onClick={() => handleRestoreButton(notesItem)}>
-                <RestoreIcon fontSize="small" />
-              </IconButton>
-            </Tooltip>
-          )}
-        </CardActions>
+        <BottomNoteActions
+          notesItem={notesItem}
+          destination={destination}
+          isNoteHover={isNoteHover}
+        />
+        {/* </CardActions> */}
       </Card>
     </>
   );

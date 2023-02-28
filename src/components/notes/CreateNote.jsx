@@ -11,14 +11,17 @@ const CreateNote = () => {
     setNoteInfo,
     notes,
     setNotes,
+    listOptions,
+    destinationOptions,
   } = useContext(NotesDataContext);
   const [showTitle, setShowTitle] = useState(false);
-
   const ref = useRef(null);
 
   const handleClickAway = () => {
     setShowTitle(false);
     if (noteTitle || noteInfo) {
+      note.currList = listOptions.notes;
+      note.currDest = destinationOptions.notes;
       setNotes([note, ...notes]);
       resetInputFields();
     }
@@ -47,10 +50,7 @@ const CreateNote = () => {
   // };
 
   return (
-    <Box
-      id="div5-create-note-fields"
-      // sx={{ mx: 2.5 }}
-    >
+    <Box id="div5-create-note-fields">
       <ClickAwayListener onClickAway={handleClickAway}>
         <Stack
           margin="auto"

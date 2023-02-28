@@ -21,10 +21,9 @@ const NotesDataContextProvider = ({ children }) => {
     id: uuid(),
     title: noteTitle,
     info: noteInfo,
+    currList: "",
+    currDest: "",
     isNotePinned: false,
-    isNoteUnderEdit: false,
-    currList: listOptions.notes,
-    currDest: destinationOptions.notes,
   };
 
   const [notes, setNotes] = useState([]);

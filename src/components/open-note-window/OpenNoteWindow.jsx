@@ -9,7 +9,12 @@ import {
 import { Box } from "@mui/system";
 import { NotesDataContext } from "../context/NotesDataContextProvider";
 
-const EditNoteWindow = ({ notesItem, isNoteOpen, setIsNoteOpen }) => {
+const EditNoteWindow = ({
+  notesItem,
+  isNoteOpen,
+  setIsNoteOpen,
+  destination,
+}) => {
   const { destinationOptions } = useContext(NotesDataContext);
   const noteTitleRef = useRef(null);
   const noteInfoRef = useRef(null);
