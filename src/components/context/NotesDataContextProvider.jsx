@@ -7,6 +7,8 @@ const NotesDataContextProvider = ({ children }) => {
   const [pinnedNotes, setPinnedNotes] = useState([]);
   const [archivedNotes, setArchivedNotes] = useState([]);
   const [deletedNotes, setDeletedNotes] = useState([]);
+  const currMode = { pinned: "pinned", unpinned: "unpinned", edit: "edit" };
+  const currDestination = { notes: "notes", archive: "archive", bin: "bin" };
 
   return (
     <NotesDataContext.Provider
@@ -19,6 +21,8 @@ const NotesDataContextProvider = ({ children }) => {
         setArchivedNotes,
         deletedNotes,
         setDeletedNotes,
+        currMode,
+        currDestination,
       }}
     >
       {children}

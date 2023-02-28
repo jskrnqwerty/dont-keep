@@ -14,14 +14,13 @@ import {
   UnarchiveOutlined as UnarchiveIcon,
   DeleteForeverOutlined as DeleteForeverIcon,
   RestoreFromTrashOutlined as RestoreIcon,
-  PushPin as UnpinIcon,
-  PushPinOutlined as PinIcon,
 } from "@mui/icons-material";
 import EditNoteWindow from "../edit-note-window/EditNoteWindow";
+import PinNoteButton from "./card-actions/PinNoteButton";
 
 // destination prop takes in notes, reminders, edit-labels, archive, bin
 const NoteCardTemplate = ({ notesItem, destination }) => {
-  const [isCardActionsVisible, setIsCardActionsVisible] = useState(false);
+  const [isNoteHover, setIsNoteHover] = useState(false);
   const [isNoteOpen, setIsNoteOpen] = useState(false);
 
   const {
@@ -33,6 +32,8 @@ const NoteCardTemplate = ({ notesItem, destination }) => {
     archivedNotes,
     deletedNotes,
     setDeletedNotes,
+    currList,
+    currDestination,
   } = useContext(NotesDataContext);
 
   // NotesNoteCard functions
@@ -72,32 +73,7 @@ const NoteCardTemplate = ({ notesItem, destination }) => {
     setNotes(updatedNotes);
   };
 
-  // PinnedNotes functions
-  const handlePinNoteButton = (notesItem) => {
-    // update currList and currDestination inside notesItem
-    notesItem.currList = "pinned";
-    notesItem.currDestination = "notes";
-    console.log(notesItem);
-
-    setPinnedNotes([notesItem, ...pinnedNotes]);
-    removeFromNotes(notesItem);
-    // isNotePinned decides which type of pin button to show on individual note card
-    notesItem.isNotePinned = true;
-  };
-
-  const handleUnpinNoteButton = (noteItem) => {
-    // update currList and currDestination inside notesItem
-    notesItem.currList = "notes";
-    notesItem.currDestination = "notes";
-    console.log(notesItem);
-
-    removeFromPinnedNotes(noteItem);
-    setNotes([notesItem, ...notes]);
-    // isNotePinned decides which type of pin button to show on individual note card
-    notesItem.isNotePinned = false;
-  };
-
-  const removeFromPinnedNotes = (noteItem) => {
+  const removeFromPinnedNotes = (notesItem) => {
     const updatedPinnedNotes = pinnedNotes.filter((item) => item !== notesItem);
     setPinnedNotes(updatedPinnedNotes);
   };
@@ -179,8 +155,8 @@ const NoteCardTemplate = ({ notesItem, destination }) => {
       {console.log("NoteCardTemplate returned")}
       <Card
         // CardActions visible on hover
-        onMouseEnter={() => setIsCardActionsVisible(true)}
-        onMouseLeave={() => setIsCardActionsVisible(false)}
+        onMouseEnter={() => setIsNoteHover(true)}
+        onMouseLeave={() => setIsNoteHover(false)}
         onClick={() => console.log("Card clicked")}
         sx={{
           maxHeight: "100%",
@@ -192,34 +168,11 @@ const NoteCardTemplate = ({ notesItem, destination }) => {
           },
         }}
       >
-        {destination === "notes" && (
-          <CardActions
-            sx={{
-              display: "inline-block",
-              float: "right",
-              color: "grey",
-              mt: "5px",
-              ml: "5px",
-              p: 0,
-              px: "3px",
-              visibility: (isCardActionsVisible && "visible") || "hidden",
-            }}
-          >
-            {!notesItem.isNotePinned && (
-              <Tooltip title="Pin note">
-                <IconButton onClick={() => handlePinNoteButton(notesItem)}>
-                  <PinIcon />
-                </IconButton>
-              </Tooltip>
-            )}
-            {notesItem.isNotePinned && (
-              <Tooltip title="Unpin note">
-                <IconButton onClick={() => handleUnpinNoteButton(notesItem)}>
-                  <UnpinIcon />
-                </IconButton>
-              </Tooltip>
-            )}
-          </CardActions>
+        {(destination === "notes" || destination === "archive") && (
+          <PinNoteButton
+            notesItem={notesItem}
+            isNoteHover={isNoteHover}
+          />
         )}
 
         <CardContent
@@ -274,7 +227,7 @@ const NoteCardTemplate = ({ notesItem, destination }) => {
         <CardActions
           //visible on hover
           sx={{
-            visibility: (isCardActionsVisible && "visible") || "hidden",
+            visibility: (isNoteHover && "visible") || "hidden",
             m: 0,
             ml: 1.4,
             p: 0,
