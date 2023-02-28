@@ -32,8 +32,6 @@ const NoteCardTemplate = ({ notesItem, destination }) => {
     archivedNotes,
     deletedNotes,
     setDeletedNotes,
-    currList,
-    currDestination,
   } = useContext(NotesDataContext);
 
   // NotesNoteCard functions

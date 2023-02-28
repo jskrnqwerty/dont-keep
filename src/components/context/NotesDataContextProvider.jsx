@@ -1,18 +1,42 @@
 import { createContext, useState } from "react";
+import { v4 as uuid } from "uuid";
 
 export const NotesDataContext = createContext(null);
 
 const NotesDataContextProvider = ({ children }) => {
+  const [noteTitle, setNoteTitle] = useState("");
+  const [noteInfo, setNoteInfo] = useState("");
+  const currListOptions = {
+    pinned: "pinned",
+    unpinned: "unpinned",
+    edit: "edit",
+  };
+  // currtMode to take any of the following inputs:
+  // notes, pinned, archive, bin;
+  const currDestOptions = { notes: "notes", archive: "archive", bin: "bin" };
+  const note = {
+    id: uuid(),
+    title: noteTitle,
+    info: noteInfo,
+    isNotePinned: false,
+    isNoteUnderEdit: false,
+    currList: currListOptions.notes,
+    currDest: currDestOptions.notes,
+  };
+
   const [notes, setNotes] = useState([]);
   const [pinnedNotes, setPinnedNotes] = useState([]);
   const [archivedNotes, setArchivedNotes] = useState([]);
   const [deletedNotes, setDeletedNotes] = useState([]);
-  const currMode = { pinned: "pinned", unpinned: "unpinned", edit: "edit" };
-  const currDestination = { notes: "notes", archive: "archive", bin: "bin" };
 
   return (
     <NotesDataContext.Provider
       value={{
+        note,
+        noteTitle,
+        setNoteTitle,
+        noteInfo,
+        setNoteInfo,
         notes,
         setNotes,
         pinnedNotes,
@@ -21,8 +45,8 @@ const NotesDataContextProvider = ({ children }) => {
         setArchivedNotes,
         deletedNotes,
         setDeletedNotes,
-        currMode,
-        currDestination,
+        currListOptions,
+        currDestOptions,
       }}
     >
       {children}
