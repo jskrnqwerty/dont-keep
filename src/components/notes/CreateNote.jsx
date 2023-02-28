@@ -1,12 +1,7 @@
 import { useState, useContext, useRef } from "react";
-import styled from "@emotion/styled";
 import { Box, ClickAwayListener, TextField, Stack } from "@mui/material";
 import { NotesDataContext } from "../context/NotesDataContextProvider";
 import { v4 as uuid } from "uuid";
-
-const TextFieldStyled = styled(TextField)`
-  padding: 0.4rem 1rem;
-`;
 
 const CreateNote = () => {
   const { notes, setNotes } = useContext(NotesDataContext);
@@ -73,7 +68,7 @@ const CreateNote = () => {
           }}
         >
           {showTitle && (
-            <TextFieldStyled
+            <TextField
               id="title-field"
               variant="standard"
               placeholder="Title"
@@ -83,9 +78,10 @@ const CreateNote = () => {
               // onKeyDown={(e) => handleEnterKeyPress(e)}
               // Title field is multiline but focus should switche to note body when Enter is hit
               multiline
+              sx={{ padding: "0.4rem 1rem", fontSize: "1rem" }}
             />
           )}
-          <TextFieldStyled
+          <TextField
             id="note-field"
             variant="standard"
             placeholder="Take a note..."
@@ -96,6 +92,7 @@ const CreateNote = () => {
             value={noteInfo}
             autoFocus
             multiline
+            sx={{ padding: "0.4rem 1rem", fontSize: "3rem" }}
           />
         </Stack>
       </ClickAwayListener>

@@ -1,55 +1,85 @@
 import { useRef } from "react";
 import {
   Dialog,
-  DialogTitle,
   DialogContent,
   DialogContentText,
   DialogActions,
   Button,
 } from "@mui/material";
+import { Box } from "@mui/system";
 
-const EditNoteWindow = ({ notesItem, openNote, setOpenNote }) => {
+const EditNoteWindow = ({ notesItem, isNoteOpen, setIsNoteOpen }) => {
   const noteTitleRef = useRef(null);
   const noteInfoRef = useRef(null);
 
   const handleClose = () => {
-    setOpenNote(false);
+    setIsNoteOpen(false);
     notesItem.title = noteTitleRef.current.innerText;
     notesItem.info = noteInfoRef.current.innerText;
   };
 
   return (
     <Dialog
-      open={openNote}
-      onClose={() => handleClose()}
-      sx={{
-        wordBreak: "break-word",
-        whiteSpace: "break-spaces",
-      }}
+      open={isNoteOpen}
+      onClose={handleClose}
+      sx={{}}
     >
-      <DialogTitle
-        ref={noteTitleRef}
-        contentEditable={notesItem.currDestination === "bin" ? false : true}
+      <Box
+        sx={{
+          display: "flex",
+          flexDirection: "column",
+          minWidth: { xs: 400, sm: 450, md: 600, lg: 600, xl: 600 },
+          maxWidth: "600px",
+        }}
       >
-        {notesItem.title}
-      </DialogTitle>
-      <DialogContent>
-        <DialogContentText
-          ref={noteInfoRef}
-          contentEditable={notesItem.currDestination !== "bin" ? true : false}
+        <DialogContent
+          disablePortal={false}
+          sx={{
+            m: 0,
+            p: 0,
+            display: "flex",
+            flexDirection: "column",
+            width: "100%",
+          }}
         >
-          {notesItem.info}
-        </DialogContentText>
-      </DialogContent>
-      <DialogActions>
-        <Button
-          variant="text"
-          onClick={() => handleClose()}
-          sx={{ color: "black" }}
-        >
-          Close
-        </Button>
-      </DialogActions>
+          <DialogContentText
+            ref={noteTitleRef}
+            contentEditable={notesItem.currDestination === "bin" ? false : true}
+            sx={{
+              px: "1rem",
+              py: "1rem",
+              fontSize: "1.3rem",
+              color: "black",
+              lineHeight: "1.8rem",
+              outline: "none",
+            }}
+          >
+            {notesItem.title}
+          </DialogContentText>
+          <DialogContentText
+            autoFocus
+            ref={noteInfoRef}
+            contentEditable={notesItem.currDestination !== "bin" ? true : false}
+            sx={{
+              px: "1rem",
+              py: "1rem",
+              color: "black",
+              outline: "none",
+            }}
+          >
+            {notesItem.info}
+          </DialogContentText>
+        </DialogContent>
+        <DialogActions sx={{}}>
+          <Button
+            variant="text"
+            onClick={handleClose}
+            sx={{ color: "black" }}
+          >
+            Close
+          </Button>
+        </DialogActions>
+      </Box>
     </Dialog>
   );
 };

@@ -22,7 +22,7 @@ import EditNoteWindow from "../edit-note-window/EditNoteWindow";
 // destination prop takes in notes, reminders, edit-labels, archive, bin
 const NoteCardTemplate = ({ notesItem, destination }) => {
   const [isCardActionsVisible, setIsCardActionsVisible] = useState(false);
-  const [openNote, setOpenNote] = useState(false);
+  const [isNoteOpen, setIsNoteOpen] = useState(false);
 
   const {
     notes,
@@ -225,14 +225,23 @@ const NoteCardTemplate = ({ notesItem, destination }) => {
         <CardContent
           onClick={() => {
             console.log("CardContent clicked");
-            setOpenNote(true);
+            setIsNoteOpen(true);
           }}
         >
           {notesItem.title && (
             <Typography
+              // variant="h6"
               gutterBottom
               id="note-title"
-              px={1}
+              sx={{
+                px: 1,
+                color: "black",
+                fontSize: "1rem",
+                fontWeight: 500,
+                wordwrap: "break-word",
+                whiteSpace: "pre-wrap",
+                wordBreak: "break-word",
+              }}
             >
               {notesItem.title}
             </Typography>
@@ -241,11 +250,14 @@ const NoteCardTemplate = ({ notesItem, destination }) => {
             <Typography
               id="note-info"
               gutterBottom
-              color="text.secondary"
-              // noWrap={false}
-              wordwrap="break-word"
-              whiteSpace="pre-wrap"
-              px={1}
+              sx={{
+                px: 1,
+                color: "black",
+                fontSize: "0.9rem",
+                wordwrap: "break-word",
+                whiteSpace: "pre-wrap",
+                wordBreak: "break-word",
+              }}
             >
               {notesItem.info}
             </Typography>
@@ -255,8 +267,8 @@ const NoteCardTemplate = ({ notesItem, destination }) => {
         {/* The popup editable text window */}
         <EditNoteWindow
           notesItem={notesItem}
-          openNote={openNote}
-          setOpenNote={setOpenNote}
+          isNoteOpen={isNoteOpen}
+          setIsNoteOpen={setIsNoteOpen}
         />
 
         <CardActions
