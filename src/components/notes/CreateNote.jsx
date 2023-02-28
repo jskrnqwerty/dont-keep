@@ -1,7 +1,6 @@
 import { useState, useContext, useRef } from "react";
 import { Box, ClickAwayListener, TextField, Stack } from "@mui/material";
 import { NotesDataContext } from "../context/NotesDataContextProvider";
-import { v4 as uuid } from "uuid";
 
 const CreateNote = () => {
   const {
@@ -14,18 +13,7 @@ const CreateNote = () => {
     setNotes,
   } = useContext(NotesDataContext);
   const [showTitle, setShowTitle] = useState(false);
-  // const [noteTitle, setNoteTitle] = useState("");
-  // const [noteInfo, setNoteInfo] = useState("");
-  // currtList to take any of the following inputs:
-  // notes, pinned, archive, bin;
-  // const note = {
-  //   id: uuid(),
-  //   title: noteTitle,
-  //   info: noteInfo,
-  //   isNotePinned: false,
-  //   currList: currModeOptions.unpinned,
-  //   currDestination: currDestOptions.notes,
-  // };
+
   const ref = useRef(null);
 
   const handleClickAway = () => {

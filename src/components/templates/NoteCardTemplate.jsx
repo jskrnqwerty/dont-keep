@@ -32,13 +32,15 @@ const NoteCardTemplate = ({ notesItem, destination }) => {
     archivedNotes,
     deletedNotes,
     setDeletedNotes,
+    listOptions,
+    destinationOptions,
   } = useContext(NotesDataContext);
 
   // NotesNoteCard functions
   const handleArchiveButton = (notesItem) => {
-    // update currList and currDestination inside notesItem
-    notesItem.currList = "archive";
-    notesItem.currDestination = "archive";
+    // update currList and currDest inside notesItem
+    notesItem.currList = listOptions.archive;
+    notesItem.currDest = destinationOptions.archive;
     console.log(notesItem);
 
     setArchivedNotes((prev) => [notesItem, ...prev]);
@@ -52,9 +54,9 @@ const NoteCardTemplate = ({ notesItem, destination }) => {
   };
 
   const handleDeleteButtonInNotes = (notesItem) => {
-    // update currList and currDestination inside notesItem
-    notesItem.currList = "bin";
-    notesItem.currDestination = "bin";
+    // update currList and currDest inside notesItem
+    notesItem.currList = listOptions.bin;
+    notesItem.currDest = destinationOptions.bin;
     console.log(notesItem);
 
     setDeletedNotes((prev) => [notesItem, ...prev]);
@@ -78,9 +80,9 @@ const NoteCardTemplate = ({ notesItem, destination }) => {
 
   // ArchivedNoteCard functions
   const handleUnarchiveButton = (notesItem) => {
-    // update currList and currDestination inside notesItem
-    notesItem.currList = "notes";
-    notesItem.currDestination = "notes";
+    // update currList and currDest inside notesItem
+    notesItem.currList = listOptions.notes;
+    notesItem.currDest = destinationOptions.notes;
     console.log(notesItem);
 
     setNotes((prev) => [notesItem, ...prev]);
@@ -88,9 +90,9 @@ const NoteCardTemplate = ({ notesItem, destination }) => {
   };
 
   const handleDeleteButtonInArchive = (notesItem) => {
-    // update currList and currDestination inside notesItem
-    notesItem.currList = "bin";
-    notesItem.currDestination = "bin";
+    // update currList and currDest inside notesItem
+    notesItem.currList = listOptions.bin;
+    notesItem.currDest = destinationOptions.bin;
     console.log(notesItem);
 
     setDeletedNotes((prev) => [notesItem, ...prev]);
@@ -110,9 +112,9 @@ const NoteCardTemplate = ({ notesItem, destination }) => {
   };
 
   const handleRestoreButton = (notesItem) => {
-    // update currList and currDestination inside notesItem
-    notesItem.currList = "notes";
-    notesItem.currDestination = "notes";
+    // update currList and currDest inside notesItem
+    notesItem.currList = listOptions.notes;
+    notesItem.currDest = destinationOptions.notes;
     console.log(notesItem);
 
     setNotes((prev) => [notesItem, ...prev]);
@@ -127,20 +129,20 @@ const NoteCardTemplate = ({ notesItem, destination }) => {
   };
 
   // const remove = (notesItem) => {
-  //   if (notesItem.currList === "notes") {
+  //   if (notesItem.currList === listOptions.notes) {
   //     const updatedNotes = notes.filter((item) => item !== notesItem);
   //     setNotes(updatedNotes);
-  //   } else if (notesItem.currList === "pinned") {
+  //   } else if (notesItem.currList === listOptions.pinned) {
   //     const updatedPinnedNotes = pinnedNotes.filter(
   //       (item) => item !== notesItem
   //     );
   //     setPinnedNotes(updatedPinnedNotes);
-  //   } else if (notesItem.currList === "archive") {
+  //   } else if (notesItem.currList === listOptions.archive) {
   //     const updatedArchivedNotes = archivedNotes.filter(
   //       (item) => item !== notesItem
   //     );
   //     setArchivedNotes(updatedArchivedNotes);
-  //   } else if (notesItem.currList === "bin") {
+  //   } else if (notesItem.currList === listOptions.bin) {
   //     const updatedDeletedNotes = deletedNotes.filter(
   //       (item) => item !== notesItem
   //     );
@@ -166,7 +168,8 @@ const NoteCardTemplate = ({ notesItem, destination }) => {
           },
         }}
       >
-        {(destination === "notes" || destination === "archive") && (
+        {(destination === destinationOptions.notes ||
+          destination === destinationOptions.archive) && (
           <PinNoteButton
             notesItem={notesItem}
             isNoteHover={isNoteHover}
@@ -233,7 +236,7 @@ const NoteCardTemplate = ({ notesItem, destination }) => {
           }}
         >
           {/* NotesNoteCard */}
-          {destination === "notes" && (
+          {destination === destinationOptions.notes && (
             <Tooltip title="Archive">
               <IconButton
                 onClick={() => {
@@ -245,7 +248,7 @@ const NoteCardTemplate = ({ notesItem, destination }) => {
               </IconButton>
             </Tooltip>
           )}
-          {destination === "notes" && (
+          {destination === destinationOptions.notes && (
             <Tooltip title="Delete">
               <IconButton onClick={() => handleDeleteButtonInNotes(notesItem)}>
                 <DeleteIcon fontSize="small" />
@@ -254,14 +257,14 @@ const NoteCardTemplate = ({ notesItem, destination }) => {
           )}
 
           {/* ArchivedNoteCard */}
-          {destination === "archive" && (
+          {destination === destinationOptions.archive && (
             <Tooltip title="Unarchive">
               <IconButton onClick={() => handleUnarchiveButton(notesItem)}>
                 <UnarchiveIcon fontSize="small" />
               </IconButton>
             </Tooltip>
           )}
-          {destination === "archive" && (
+          {destination === destinationOptions.archive && (
             <Tooltip title="Delete">
               <IconButton
                 onClick={() => handleDeleteButtonInArchive(notesItem)}
@@ -272,14 +275,14 @@ const NoteCardTemplate = ({ notesItem, destination }) => {
           )}
 
           {/* DeletedNoteCard */}
-          {destination === "bin" && (
+          {destination === destinationOptions.bin && (
             <Tooltip title="Delete Forever">
               <IconButton onClick={() => handleDeleteForeverButton(notesItem)}>
                 <DeleteForeverIcon fontSize="small" />
               </IconButton>
             </Tooltip>
           )}
-          {destination === "bin" && (
+          {destination === destinationOptions.bin && (
             <Tooltip title="Restore">
               <IconButton onClick={() => handleRestoreButton(notesItem)}>
                 <RestoreIcon fontSize="small" />

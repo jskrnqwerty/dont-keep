@@ -6,22 +6,25 @@ export const NotesDataContext = createContext(null);
 const NotesDataContextProvider = ({ children }) => {
   const [noteTitle, setNoteTitle] = useState("");
   const [noteInfo, setNoteInfo] = useState("");
-  const currListOptions = {
+  const listOptions = {
     pinned: "pinned",
     unpinned: "unpinned",
     edit: "edit",
+    notes: "notes",
+    archive: "archive",
+    bin: "bin",
   };
-  // currtMode to take any of the following inputs:
+  // currList used to take any of the following inputs:
   // notes, pinned, archive, bin;
-  const currDestOptions = { notes: "notes", archive: "archive", bin: "bin" };
+  const destinationOptions = { notes: "notes", archive: "archive", bin: "bin" };
   const note = {
     id: uuid(),
     title: noteTitle,
     info: noteInfo,
     isNotePinned: false,
     isNoteUnderEdit: false,
-    currList: currListOptions.notes,
-    currDest: currDestOptions.notes,
+    currList: listOptions.notes,
+    currDest: destinationOptions.notes,
   };
 
   const [notes, setNotes] = useState([]);
@@ -45,8 +48,8 @@ const NotesDataContextProvider = ({ children }) => {
         setArchivedNotes,
         deletedNotes,
         setDeletedNotes,
-        currListOptions,
-        currDestOptions,
+        listOptions,
+        destinationOptions,
       }}
     >
       {children}

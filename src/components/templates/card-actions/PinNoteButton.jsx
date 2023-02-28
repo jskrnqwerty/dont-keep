@@ -14,23 +14,22 @@ const PinNoteButton = ({ notesItem, isNoteHover }) => {
     setPinnedNotes,
     archivedNotes,
     setArchivedNotes,
+    listOptions,
+    destinationOptions,
   } = useContext(NotesDataContext);
   // currList take following values: pinned, unpinned, editNote
   // PinnedNotes functions
   const handlePinNoteButton = (notesItem) => {
-    // update currList and currDestination inside notesItem
+    // update currList and currDest inside notesItem
 
-    console.log(
-      "In handlePinNoteButton, currDestination: ",
-      notesItem.currDestination
-    );
-    notesItem.currList = "pinned";
-    // notesItem.currDestination = "notes";
+    console.log("In handlePinNoteButton, currDest: ", notesItem.currDest);
+    notesItem.currList = listOptions.pinned;
+    // notesItem.currDest = destinationOptions.notes;
     setPinnedNotes([notesItem, ...pinnedNotes]);
-    if (notesItem.currDestination === "notes") {
+    if (notesItem.currDest === destinationOptions.notes) {
       removeFromNotes(notesItem);
     }
-    if (notesItem.currDestination === "archive") {
+    if (notesItem.currDest === destinationOptions.archive) {
       removeFromArchivedNotes(notesItem);
     }
     // isNotePinned decides which type of pin button to show on individual note card
@@ -38,9 +37,9 @@ const PinNoteButton = ({ notesItem, isNoteHover }) => {
   };
 
   const handleUnpinNoteButton = (notesItem) => {
-    // update currList and currDestination inside notesItem
-    notesItem.currList = "notes";
-    notesItem.currDestination = "notes";
+    // update currList and currDest inside notesItem
+    notesItem.currList = listOptions.notes;
+    notesItem.currDest = destinationOptions.notes;
     console.log(notesItem);
     removeFromPinnedNotes(notesItem);
     setNotes([notesItem, ...notes]);
