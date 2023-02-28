@@ -1,4 +1,4 @@
-import { createContext, useState } from "react";
+import { createContext, useEffect, useState } from "react";
 import { v4 as uuid } from "uuid";
 
 export const NotesDataContext = createContext(null);
@@ -30,6 +30,29 @@ const NotesDataContextProvider = ({ children }) => {
   const [pinnedNotes, setPinnedNotes] = useState([]);
   const [archivedNotes, setArchivedNotes] = useState([]);
   const [deletedNotes, setDeletedNotes] = useState([]);
+
+  useEffect(() => {
+    const localNotesData = localStorage.getItem("notesData");
+    if (localNotesData) setNotes(JSON.parse(localNotesData));
+
+    const localPinnedNotesData = localStorage.getItem("pinnedNotesData");
+    if (localPinnedNotesData) setPinnedNotes(JSON.parse(localPinnedNotesData));
+
+    const localArchivedNotesData = localStorage.getItem("archivedNotesData");
+    if (localArchivedNotesData)
+      setArchivedNotes(JSON.parse(localArchivedNotesData));
+
+    const localDeletedNotesData = localStorage.getItem("deletedNotesData");
+    if (localDeletedNotesData)
+      setDeletedNotes(JSON.parse(localDeletedNotesData));
+  }, []);
+
+  useEffect(() => {
+    localStorage.setItem("notesData", JSON.stringify(notes));
+    localStorage.setItem("pinnedNotesData", JSON.stringify(pinnedNotes));
+    localStorage.setItem("archivedNotesData", JSON.stringify(archivedNotes));
+    localStorage.setItem("deletedNotesData", JSON.stringify(deletedNotes));
+  });
 
   return (
     <NotesDataContext.Provider
