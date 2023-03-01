@@ -1,9 +1,10 @@
 import { useState, useContext, useEffect } from "react";
-import { NotesDataContext } from "../context/NotesDataContextProvider";
+import { NotesDataContext } from "../../context/NotesDataContextProvider";
 import Grid2 from "@mui/material/Unstable_Grid2"; // Grid version 2
-import EmptyNotesTemplate from "../templates/EmptyNotesTemplate";
-// import NotesGridItem from "./NotesGridItem";
-import NoteCardTemplate from "../templates/NoteCardTemplate";
+// import EmptyNotesTemplate from "../../templates/EmptyNotesTemplate";
+// import NoteCardTemplate from "../../templates/NoteCardTemplate";
+import NoteCardTemplate from "../../common/templates/NoteCardTemplate";
+import EmptyNotesTemplate from "../../common/templates/EmptyNotesTemplate";
 
 const NotesGrid = () => {
   const { notes, setNotes, pinnedNotes } = useContext(NotesDataContext);

@@ -1,6 +1,7 @@
 import { useContext } from "react";
 import { Typography } from "@mui/material";
-import { NotesDataContext } from "../../context/NotesDataContextProvider";
+// import NotesDataContext from "../../../context/NotesDataContextProvider";
+import { NotesDataContext } from "../../../context/NotesDataContextProvider";
 
 const OtherNotesGridHeading = () => {
   const { notes, pinnedNotes } = useContext(NotesDataContext);

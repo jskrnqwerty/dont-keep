@@ -12,6 +12,9 @@ const RestoreNoteButton = ({ notesItem }) => {
     destinationOptions,
   } = useContext(NotesDataContext);
 
+  /**
+   * @type {object}
+   */
   const handleRestoreButton = (notesItem) => {
     notesItem.currList = listOptions.notes;
     notesItem.currDest = destinationOptions.notes;

@@ -1,9 +1,10 @@
-import Grid2 from "@mui/material/Unstable_Grid2/Grid2";
-import NoteCardTemplate from "../../templates/NoteCardTemplate";
 import { useContext } from "react";
-import { NotesDataContext } from "../../context/NotesDataContextProvider";
+import Grid2 from "@mui/material/Unstable_Grid2/Grid2";
+// import NoteCardTemplate from "../../../templates/NoteCardTemplate";
+import { NotesDataContext } from "../../../context/NotesDataContextProvider";
 import { Box } from "@mui/material";
 import PinnedNotesGridHeading from "../grid-headings/PinnedNotesGridHeading";
+import NoteCardTemplate from "../../../common/templates/NoteCardTemplate";
 
 const PinnedNotes = () => {
   const { pinnedNotes } = useContext(NotesDataContext);

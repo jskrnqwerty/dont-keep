@@ -1,6 +1,6 @@
 import { useState, useContext, useRef } from "react";
 import { Box, ClickAwayListener, TextField, Stack } from "@mui/material";
-import { NotesDataContext } from "../context/NotesDataContextProvider";
+import { NotesDataContext } from "../../context/NotesDataContextProvider";
 
 const CreateNote = () => {
   const {

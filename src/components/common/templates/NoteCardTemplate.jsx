@@ -1,10 +1,9 @@
 import { useContext, useState } from "react";
-import { NotesDataContext } from "../context/NotesDataContextProvider";
+import { NotesDataContext } from "../../context/NotesDataContextProvider";
 import { Typography, Card, CardContent, CardActions } from "@mui/material";
-
 import OpenNoteWindow from "../open-note-window/OpenNoteWindow";
-import PinNoteButton from "./note-actions/PinNoteButton";
-import BottomNoteActions from "./note-actions/BottomNoteActions";
+import PinNoteButton from "../note-actions/PinNoteButton";
+import BottomNoteActions from "../note-actions/BottomNoteActions";
 
 // destination prop takes in notes, reminders, edit-labels, archive, bin
 const NoteCardTemplate = ({ notesItem, destination }) => {

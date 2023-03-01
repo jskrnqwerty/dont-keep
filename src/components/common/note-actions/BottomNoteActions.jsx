@@ -28,27 +28,28 @@ const BottomNoteActions = ({
       }}
     >
       {/* // NotesNoteCard */}
-      {destination === destinationOptions.notes && (
+      {/* {destination === destinationOptions.notes && ( */}
+      {notesItem.currDest === destinationOptions.notes && (
         <ArchiveNoteButton notesItem={notesItem} />
       )}
-      {destination === destinationOptions.notes && (
+      {notesItem.currDest === destinationOptions.notes && (
         <DeleteNoteButton
           notesItem={notesItem}
           destination={destination}
         />
       )}
       {/* // ArchivedNoteCard */}
-      {destination === destinationOptions.archive && (
+      {notesItem.currDest === destinationOptions.archive && (
         <UnarchiveNoteButton notesItem={notesItem} />
       )}
-      {destination === destinationOptions.archive && (
+      {notesItem.currDest === destinationOptions.archive && (
         <DeleteNoteButton
           notesItem={notesItem}
           destination={destination}
         />
       )}
       {/* // DeletedNoteCard */}
-      {destination === destinationOptions.bin && (
+      {notesItem.currDest === destinationOptions.bin && (
         <DeleteForeverNoteButton notesItem={notesItem} />
       )}
       {destination === destinationOptions.bin && (

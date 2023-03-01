@@ -1,9 +1,11 @@
 import { useContext } from "react";
-import { NotesDataContext } from "../context/NotesDataContextProvider";
+import { NotesDataContext } from "../../context/NotesDataContextProvider";
 import { Box } from "@mui/material";
 import Grid2 from "@mui/material/Unstable_Grid2"; // Grid version 2
-import NoteCardTemplate from "../templates/NoteCardTemplate";
-import EmptyNotesTemplate from "../templates/EmptyNotesTemplate";
+// import NoteCardTemplate from "../../templates/NoteCardTemplate";
+// import EmptyNotesTemplate from "../../templates/EmptyNotesTemplate";
+import NoteCardTemplate from "../../common/templates/NoteCardTemplate";
+import EmptyNotesTemplate from "../../common/templates/EmptyNotesTemplate";
 
 const DeletedNotes = () => {
   const { deletedNotes } = useContext(NotesDataContext);

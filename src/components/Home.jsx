@@ -1,17 +1,17 @@
+import { useContext } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 // MUI imports
 import { Box } from "@mui/material";
 // components imports
+import { DrawerStateContext } from "./context/DrawerStateProvider";
 import HeaderBar from "./header-bar/HeaderBar";
 import Drawer from "./drawer/Drawer";
-import Notes from "./notes/Notes";
-import ArchivedNotes from "./archived-notes/ArchivedNotes";
-import DeletedNotes from "./deleted-notes/DeletedNotes";
 import HoverDrawer from "./drawer/HoverDrawer";
-import { DrawerStateContext } from "./context/DrawerStateProvider";
-import { useContext } from "react";
-import Reminders from "./reminders/Reminders";
-import EditLabels from "./edit-labels/EditLabels";
+import Notes from "./drawer-list-items/notes/Notes";
+import Reminders from "./drawer-list-items/reminders/Reminders";
+import EditLabels from "./drawer-list-items/edit-labels/EditLabels";
+import ArchivedNotes from "./drawer-list-items/archived-notes/ArchivedNotes";
+import DeletedNotes from "./drawer-list-items/deleted-notes/DeletedNotes";
 
 const Home = () => {
   const { open } = useContext(DrawerStateContext);

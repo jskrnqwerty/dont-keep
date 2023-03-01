@@ -7,7 +7,7 @@ import {
   Button,
 } from "@mui/material";
 import { Box } from "@mui/system";
-import { NotesDataContext } from "../context/NotesDataContextProvider";
+import { NotesDataContext } from "../../context/NotesDataContextProvider";
 
 const OpenNoteWindow = ({
   notesItem,
@@ -53,7 +53,7 @@ const OpenNoteWindow = ({
             <DialogContentText
               ref={noteTitleRef}
               contentEditable={
-                notesItem.currDest === destinationOptions.bin ? false : true
+                destination === destinationOptions.bin ? false : true
               }
               sx={{
                 px: "1rem",
@@ -72,7 +72,7 @@ const OpenNoteWindow = ({
               autoFocus
               ref={noteInfoRef}
               contentEditable={
-                notesItem.currDest !== destinationOptions.bin ? true : false
+                destination !== destinationOptions.bin ? true : false
               }
               sx={{
                 px: "1rem",

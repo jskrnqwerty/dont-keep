@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import { NotesDataContext } from "../context/NotesDataContextProvider";
+import { NotesDataContext } from "../../context/NotesDataContextProvider";
 import { Box } from "@mui/material";
 import PinnedNotes from "./pinned-notes/PinnedNotes";
 import OtherNotesGridHeading from "./grid-headings/OtherNotesGridHeading";
