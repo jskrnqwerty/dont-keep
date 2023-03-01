@@ -8,7 +8,7 @@ import NoteCardTemplate from "../../common/templates/NoteCardTemplate";
 import EmptyNotesTemplate from "../../common/templates/EmptyNotesTemplate";
 
 const ArchivedNotes = () => {
-  const { archivedNotes } = useContext(NotesDataContext);
+  const { archivedNotes, destinationOptions } = useContext(NotesDataContext);
 
   return (
     <Box
@@ -41,12 +41,12 @@ const ArchivedNotes = () => {
             >
               <NoteCardTemplate
                 notesItem={notesItem}
-                destination="archive"
+                displayIn={destinationOptions.archive}
               />
             </Grid2>
           ))
         ) : (
-          <EmptyNotesTemplate destination="archive" />
+          <EmptyNotesTemplate displayIn={destinationOptions.archive} />
         )}
       </Grid2>
     </Box>
@@ -67,11 +67,11 @@ const ArchivedNotes = () => {
     //       archivedNotes.map((notesItem) => (
     //         <NoteCardTemplate
     //           notesItem={notesItem}
-    //           destination="archive"
+    //           displayIn="archive"
     //         />
     //       ))
     //     ) : (
-    //       <EmptyNotesTemplate destination="archive" />
+    //       <EmptyNotesTemplate displayIn={destinationOptions.archive} />
     //     )}
     //   </Grid>
     // </Box>
@@ -79,5 +79,3 @@ const ArchivedNotes = () => {
 };
 
 export default ArchivedNotes;
-
-// destination prop takes in notes, reminders, edit-labels, archive, bin

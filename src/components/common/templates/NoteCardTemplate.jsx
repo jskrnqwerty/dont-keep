@@ -5,8 +5,8 @@ import OpenNoteWindow from "../open-note-window/OpenNoteWindow";
 import PinNoteButton from "../note-actions/PinNoteButton";
 import BottomNoteActions from "../note-actions/BottomNoteActions";
 
-// destination prop takes in notes, reminders, edit-labels, archive, bin
-const NoteCardTemplate = ({ notesItem, destination }) => {
+// displayIn prop takes in notes, reminders, edit-labels, archive, bin
+const NoteCardTemplate = ({ notesItem, displayIn }) => {
   const [isNoteHover, setIsNoteHover] = useState(false);
   const [isNoteOpen, setIsNoteOpen] = useState(false);
 
@@ -30,8 +30,8 @@ const NoteCardTemplate = ({ notesItem, destination }) => {
           },
         }}
       >
-        {(destination === destinationOptions.notes ||
-          destination === destinationOptions.archive) && (
+        {(displayIn === destinationOptions.notes ||
+          displayIn === destinationOptions.archive) && (
           <CardActions
             sx={{
               display: "inline-block",
@@ -94,11 +94,11 @@ const NoteCardTemplate = ({ notesItem, destination }) => {
           notesItem={notesItem}
           isNoteOpen={isNoteOpen}
           setIsNoteOpen={setIsNoteOpen}
-          destination={destination}
+          displayIn={displayIn}
         />
         <BottomNoteActions
           notesItem={notesItem}
-          destination={destination}
+          displayIn={displayIn}
           isNoteHover={isNoteHover}
           isNoteOpen={isNoteOpen}
         />

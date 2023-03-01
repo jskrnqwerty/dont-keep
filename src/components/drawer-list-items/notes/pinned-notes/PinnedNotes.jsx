@@ -7,7 +7,7 @@ import PinnedNotesGridHeading from "../grid-headings/PinnedNotesGridHeading";
 import NoteCardTemplate from "../../../common/templates/NoteCardTemplate";
 
 const PinnedNotes = () => {
-  const { pinnedNotes } = useContext(NotesDataContext);
+  const { pinnedNotes, destinationOptions } = useContext(NotesDataContext);
 
   return (
     <Box
@@ -30,7 +30,7 @@ const PinnedNotes = () => {
           >
             <NoteCardTemplate
               notesItem={notesItem}
-              destination="notes"
+              displayIn={destinationOptions.notes}
             />
           </Grid2>
         ))}

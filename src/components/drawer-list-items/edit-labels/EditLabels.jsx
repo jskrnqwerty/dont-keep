@@ -1,10 +1,12 @@
-// import NoteCardTemplate from "../../common/templates/NoteCardTemplate";
+import { useContext } from "react";
+import { NotesDataContext } from "../../context/NotesDataContextProvider";
 import EmptyNotesTemplate from "../../common/templates/EmptyNotesTemplate";
 
-const EditLabels = () => {
+const EditLabels = ({ displayIn }) => {
+  const { destinationOptions } = useContext(NotesDataContext);
   return (
     <>
-      <EmptyNotesTemplate destination="edit-labels" />
+      <EmptyNotesTemplate displayIn={destinationOptions.editLabels} />
     </>
   );
 };

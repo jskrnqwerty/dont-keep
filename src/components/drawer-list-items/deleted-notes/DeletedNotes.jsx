@@ -8,7 +8,7 @@ import NoteCardTemplate from "../../common/templates/NoteCardTemplate";
 import EmptyNotesTemplate from "../../common/templates/EmptyNotesTemplate";
 
 const DeletedNotes = () => {
-  const { deletedNotes } = useContext(NotesDataContext);
+  const { deletedNotes, destinationOptions } = useContext(NotesDataContext);
 
   return (
     <Box
@@ -41,12 +41,12 @@ const DeletedNotes = () => {
             >
               <NoteCardTemplate
                 notesItem={notesItem}
-                destination="bin"
+                displayIn={destinationOptions.bin}
               />
             </Grid2>
           ))
         ) : (
-          <EmptyNotesTemplate destination="bin" />
+          <EmptyNotesTemplate displayIn={destinationOptions.bin} />
         )}
       </Grid2>
     </Box>
@@ -54,5 +54,3 @@ const DeletedNotes = () => {
 };
 
 export default DeletedNotes;
-
-// destination prop takes in notes, reminders, edit-labels, archive, bin

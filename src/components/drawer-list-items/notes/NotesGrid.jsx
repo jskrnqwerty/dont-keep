@@ -7,7 +7,8 @@ import NoteCardTemplate from "../../common/templates/NoteCardTemplate";
 import EmptyNotesTemplate from "../../common/templates/EmptyNotesTemplate";
 
 const NotesGrid = () => {
-  const { notes, setNotes, pinnedNotes } = useContext(NotesDataContext);
+  const { notes, setNotes, pinnedNotes, destinationOptions } =
+    useContext(NotesDataContext);
   // need duplicate notes so we can get the manipulated notes out of handleSort
   // and access them through function scope inside useEffect hook
   const [duplicateNotes, setDuplicateNotes] = useState([...notes]);
@@ -98,15 +99,14 @@ const NotesGrid = () => {
           >
             <NoteCardTemplate
               notesItem={notesItem}
-              destination="notes"
+              displayIn={destinationOptions.notes}
             />
           </Grid2>
         ))
       ) : pinnedNotes.length > 0 ? (
         ""
       ) : (
-        // destination prop takes in notes, reminders, edit-labels, archive, bin
-        <EmptyNotesTemplate destination="notes" />
+        <EmptyNotesTemplate displayIn={destinationOptions.notes} />
       )}
     </Grid2>
   );

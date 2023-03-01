@@ -6,26 +6,23 @@ import {
   ArchiveOutlined as ArchiveIcon,
   DeleteOutline as DeleteIcon,
 } from "@mui/icons-material";
+import { useContext } from "react";
+import { NotesDataContext } from "../../context/NotesDataContextProvider";
 
-// destination prop takes in notes, reminders, edit-labels, archive, bin
-const EmptyNotesTemplate = ({ destination }) => {
+// displayIn prop takes in notes, reminders, edit-labels, archive, bin
+const EmptyNotesTemplate = ({ displayIn }) => {
+  const { destinationOptions } = useContext(NotesDataContext);
   return (
     <Box
       sx={{
         display: "flex",
         width: "100%",
         flexDirection: "column",
-        // marginTop:
-        //   destination === "notes"
-        //     ? "16vh"
-        //     : destination === "bin"
-        //     ? "26vh"
-        //     : "36vh",
         marginX: "auto",
       }}
     >
       {/* Empty Notes */}
-      {destination === "notes" && (
+      {displayIn === destinationOptions.notes && (
         <Stack
           alignItems="center"
           sx={{ p: 5 }}
@@ -52,7 +49,7 @@ const EmptyNotesTemplate = ({ destination }) => {
       )}
 
       {/* Empty Reminders */}
-      {destination === "reminders" && (
+      {displayIn === destinationOptions.reminders && (
         <Stack
           alignItems="center"
           sx={{ p: 5 }}
@@ -75,7 +72,7 @@ const EmptyNotesTemplate = ({ destination }) => {
       )}
 
       {/* Empty Edit labels */}
-      {destination === "edit-labels" && (
+      {displayIn === destinationOptions.editLabels && (
         <Stack
           alignItems="center"
           sx={{ p: 5 }}
@@ -98,7 +95,7 @@ const EmptyNotesTemplate = ({ destination }) => {
       )}
 
       {/* Empty Archive */}
-      {destination === "archive" && (
+      {displayIn === destinationOptions.archive && (
         <Stack
           alignItems="center"
           sx={{ p: 5 }}
@@ -118,7 +115,7 @@ const EmptyNotesTemplate = ({ destination }) => {
       )}
 
       {/* Empty Bin */}
-      {destination === "bin" && (
+      {displayIn === destinationOptions.bin && (
         <Stack
           alignItems="center"
           sx={{ p: 5 }}

@@ -16,7 +16,13 @@ const NotesDataContextProvider = ({ children }) => {
   };
   // currList used to take any of the following inputs:
   // notes, pinned, archive, bin;
-  const destinationOptions = { notes: "notes", archive: "archive", bin: "bin" };
+  const destinationOptions = {
+    notes: "notes",
+    reminders: "reminders",
+    editLabels: "editLabels",
+    archive: "archive",
+    bin: "bin",
+  };
   const note = {
     id: uuid(),
     title: noteTitle,

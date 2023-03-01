@@ -3,7 +3,7 @@ import { NotesDataContext } from "../../context/NotesDataContextProvider";
 import { Tooltip, IconButton } from "@mui/material";
 import { DeleteOutline as DeleteIcon } from "@mui/icons-material";
 
-const DeleteNoteButton = ({ notesItem, destination }) => {
+const DeleteNoteButton = ({ notesItem, displayIn }) => {
   const {
     notes,
     setNotes,
@@ -58,7 +58,7 @@ const DeleteNoteButton = ({ notesItem, destination }) => {
     <Tooltip title="Delete">
       <IconButton
         onClick={() =>
-          destination === destinationOptions.notes
+          displayIn === destinationOptions.notes
             ? handleDeleteButtonInNotes(notesItem)
             : handleDeleteButtonInArchive(notesItem)
         }

@@ -13,7 +13,7 @@ const OpenNoteWindow = ({
   notesItem,
   isNoteOpen,
   setIsNoteOpen,
-  destination,
+  displayIn,
 }) => {
   const { destinationOptions } = useContext(NotesDataContext);
   const noteTitleRef = useRef(null);
@@ -41,7 +41,7 @@ const OpenNoteWindow = ({
           }}
         >
           <DialogContent
-            disablePortal={false}
+            // disablePortal={false}
             sx={{
               m: 0,
               p: 0,
@@ -53,7 +53,7 @@ const OpenNoteWindow = ({
             <DialogContentText
               ref={noteTitleRef}
               contentEditable={
-                destination === destinationOptions.bin ? false : true
+                displayIn === destinationOptions.bin ? false : true
               }
               sx={{
                 px: "1rem",
@@ -72,7 +72,7 @@ const OpenNoteWindow = ({
               autoFocus
               ref={noteInfoRef}
               contentEditable={
-                destination !== destinationOptions.bin ? true : false
+                displayIn !== destinationOptions.bin ? true : false
               }
               sx={{
                 px: "1rem",
