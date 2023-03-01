@@ -9,7 +9,7 @@ import {
 import { Box } from "@mui/system";
 import { NotesDataContext } from "../context/NotesDataContextProvider";
 
-const EditNoteWindow = ({
+const OpenNoteWindow = ({
   notesItem,
   isNoteOpen,
   setIsNoteOpen,
@@ -26,73 +26,77 @@ const EditNoteWindow = ({
   };
 
   return (
-    <Dialog
-      open={isNoteOpen}
-      onClose={handleClose}
-      sx={{}}
-    >
-      <Box
-        sx={{
-          display: "flex",
-          flexDirection: "column",
-          minWidth: { xs: 400, sm: 500, md: 600, lg: 600, xl: 600 },
-          maxWidth: "600px",
-        }}
+    <>
+      <Dialog
+        open={isNoteOpen}
+        onClose={handleClose}
+        sx={{}}
       >
-        <DialogContent
-          disablePortal={false}
+        <Box
           sx={{
-            m: 0,
-            p: 0,
             display: "flex",
             flexDirection: "column",
-            width: "100%",
+            minWidth: { xs: 400, sm: 500, md: 600, lg: 600, xl: 600 },
+            maxWidth: "600px",
           }}
         >
-          <DialogContentText
-            ref={noteTitleRef}
-            contentEditable={
-              notesItem.currDest === destinationOptions.bin ? false : true
-            }
+          <DialogContent
+            disablePortal={false}
             sx={{
-              px: "1rem",
-              py: "1rem",
-              fontSize: "1.3rem",
-              color: "black",
-              lineHeight: "1.8rem",
-              outline: "none",
+              m: 0,
+              p: 0,
+              display: "flex",
+              flexDirection: "column",
+              width: "100%",
             }}
           >
-            {notesItem.title}
-          </DialogContentText>
-          <DialogContentText
-            autoFocus
-            ref={noteInfoRef}
-            contentEditable={
-              notesItem.currDest !== destinationOptions.bin ? true : false
-            }
-            sx={{
-              px: "1rem",
-              py: "1rem",
-              color: "black",
-              outline: "none",
-            }}
-          >
-            {notesItem.info}
-          </DialogContentText>
-        </DialogContent>
-        <DialogActions sx={{}}>
-          <Button
-            variant="text"
-            onClick={handleClose}
-            sx={{ color: "black" }}
-          >
-            Close
-          </Button>
-        </DialogActions>
-      </Box>
-    </Dialog>
+            <DialogContentText
+              ref={noteTitleRef}
+              contentEditable={
+                notesItem.currDest === destinationOptions.bin ? false : true
+              }
+              sx={{
+                px: "1rem",
+                pt: "0.8rem",
+                pb: "0.5rem",
+
+                fontSize: "1.3rem",
+                color: "black",
+                lineHeight: "1.8rem",
+                outline: "none",
+              }}
+            >
+              {notesItem.title}
+            </DialogContentText>
+            <DialogContentText
+              autoFocus
+              ref={noteInfoRef}
+              contentEditable={
+                notesItem.currDest !== destinationOptions.bin ? true : false
+              }
+              sx={{
+                px: "1rem",
+                py: "0.2rem",
+                color: "black",
+                outline: "none",
+              }}
+            >
+              {notesItem.info}
+            </DialogContentText>
+          </DialogContent>
+          <DialogActions sx={{}}>
+            <Button
+              variant="text"
+              onClick={handleClose}
+              sx={{ color: "black" }}
+            >
+              Close
+            </Button>
+          </DialogActions>
+        </Box>
+      </Dialog>
+    </>
   );
 };
 
-export default EditNoteWindow;
+export default OpenNoteWindow;

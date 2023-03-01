@@ -1,8 +1,8 @@
 import { useContext, useState } from "react";
 import { NotesDataContext } from "../context/NotesDataContextProvider";
-import { Typography, Card, CardContent } from "@mui/material";
+import { Typography, Card, CardContent, CardActions } from "@mui/material";
 
-import EditNoteWindow from "../open-note-window/OpenNoteWindow";
+import OpenNoteWindow from "../open-note-window/OpenNoteWindow";
 import PinNoteButton from "./note-actions/PinNoteButton";
 import BottomNoteActions from "./note-actions/BottomNoteActions";
 
@@ -33,10 +33,20 @@ const NoteCardTemplate = ({ notesItem, destination }) => {
       >
         {(destination === destinationOptions.notes ||
           destination === destinationOptions.archive) && (
-          <PinNoteButton
-            notesItem={notesItem}
-            isNoteHover={isNoteHover}
-          />
+          <CardActions
+            sx={{
+              display: "inline-block",
+              float: "right",
+              color: "grey",
+              mt: "5px",
+              ml: "5px",
+              p: 0,
+              px: "3px",
+              visibility: (isNoteHover && "visible") || "hidden",
+            }}
+          >
+            <PinNoteButton notesItem={notesItem} />
+          </CardActions>
         )}
 
         <CardContent
@@ -81,7 +91,7 @@ const NoteCardTemplate = ({ notesItem, destination }) => {
           )}
         </CardContent>
         {/* The popup editable text window */}
-        <EditNoteWindow
+        <OpenNoteWindow
           notesItem={notesItem}
           isNoteOpen={isNoteOpen}
           setIsNoteOpen={setIsNoteOpen}
@@ -91,6 +101,7 @@ const NoteCardTemplate = ({ notesItem, destination }) => {
           notesItem={notesItem}
           destination={destination}
           isNoteHover={isNoteHover}
+          isNoteOpen={isNoteOpen}
         />
         {/* </CardActions> */}
       </Card>

@@ -1,4 +1,4 @@
-import { Tooltip, IconButton, CardActions } from "@mui/material";
+import { Tooltip, IconButton } from "@mui/material";
 import {
   PushPin as UnpinIcon,
   PushPinOutlined as PinIcon,
@@ -6,7 +6,7 @@ import {
 import { useContext } from "react";
 import { NotesDataContext } from "../../context/NotesDataContextProvider";
 
-const PinNoteButton = ({ notesItem, isNoteHover }) => {
+const PinNoteButton = ({ notesItem }) => {
   const {
     notes,
     setNotes,
@@ -65,18 +65,7 @@ const PinNoteButton = ({ notesItem, isNoteHover }) => {
   };
 
   return (
-    <CardActions
-      sx={{
-        display: "inline-block",
-        float: "right",
-        color: "grey",
-        mt: "5px",
-        ml: "5px",
-        p: 0,
-        px: "3px",
-        visibility: (isNoteHover && "visible") || "hidden",
-      }}
-    >
+    <>
       {!notesItem.isNotePinned && (
         <Tooltip title="Pin note">
           <IconButton onClick={() => handlePinNoteButton(notesItem)}>
@@ -91,7 +80,7 @@ const PinNoteButton = ({ notesItem, isNoteHover }) => {
           </IconButton>
         </Tooltip>
       )}
-    </CardActions>
+    </>
   );
 };
 

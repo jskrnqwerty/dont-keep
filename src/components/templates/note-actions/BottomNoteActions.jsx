@@ -8,14 +8,19 @@ import DeleteForeverNoteButton from "./DeleteForeverNoteButton";
 import RestoreNoteButton from "./RestoreNoteButton";
 import DeleteNoteButton from "./DeleteNoteButton";
 
-const BottomNoteActions = ({ notesItem, destination, isNoteHover }) => {
+const BottomNoteActions = ({
+  notesItem,
+  destination,
+  isNoteHover,
+  isNoteOpen,
+}) => {
   const { destinationOptions } = useContext(NotesDataContext);
 
   return (
     <CardActions
       //visible on hover
       sx={{
-        visibility: (isNoteHover && "visible") || "hidden",
+        visibility: ((isNoteHover || isNoteOpen) && "visible") || "hidden",
         m: 0,
         ml: 1.4,
         p: 0,
