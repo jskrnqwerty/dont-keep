@@ -1,3 +1,7 @@
+/**
+ * @Button to reset the app
+ */
+
 import { IconButton, Tooltip } from "@mui/material";
 import { useContext } from "react";
 import UseAnimations from "react-useanimations";
