@@ -3,6 +3,8 @@ import MuiAppBar from "@mui/material/AppBar";
 import Toolbar from "@mui/material/Toolbar";
 import Heading from "./Heading";
 import MenuToggleButton from "./MenuIconButton";
+import DeleteAllNotesButton from "./DeleteAllNotesButton";
+import { Box } from "@mui/system";
 
 const HeaderBarStyled = styled(MuiAppBar)`
   background: white;
@@ -16,8 +18,13 @@ const HeaderBar = () => {
     <>
       <HeaderBarStyled position="fixed">
         <Toolbar>
-          <MenuToggleButton />
-          <Heading />
+          <Box sx={{ display: "flex", width: "100%" }}>
+            <MenuToggleButton />
+            <Heading />
+            <Box sx={{ ml: "auto" }}>
+              <DeleteAllNotesButton />
+            </Box>
+          </Box>
         </Toolbar>
       </HeaderBarStyled>
     </>

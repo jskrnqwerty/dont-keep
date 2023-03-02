@@ -10,7 +10,7 @@ import DeleteNoteButton from "./DeleteNoteButton";
 
 const BottomNoteActions = ({
   notesItem,
-  destination,
+  displayIn,
   isNoteHover,
   isNoteOpen,
 }) => {
@@ -35,7 +35,7 @@ const BottomNoteActions = ({
       {notesItem.currDest === destinationOptions.notes && (
         <DeleteNoteButton
           notesItem={notesItem}
-          destination={destination}
+          displayIn={displayIn}
         />
       )}
       {/* // ArchivedNoteCard */}
@@ -45,14 +45,14 @@ const BottomNoteActions = ({
       {notesItem.currDest === destinationOptions.archive && (
         <DeleteNoteButton
           notesItem={notesItem}
-          destination={destination}
+          displayIn={displayIn}
         />
       )}
       {/* // DeletedNoteCard */}
       {notesItem.currDest === destinationOptions.bin && (
         <DeleteForeverNoteButton notesItem={notesItem} />
       )}
-      {destination === destinationOptions.bin && (
+      {notesItem.currDest === destinationOptions.bin && (
         <RestoreNoteButton notesItem={notesItem} />
       )}
     </CardActions>

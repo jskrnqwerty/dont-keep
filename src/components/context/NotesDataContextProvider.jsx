@@ -6,6 +6,14 @@ export const NotesDataContext = createContext(null);
 const NotesDataContextProvider = ({ children }) => {
   const [noteTitle, setNoteTitle] = useState("");
   const [noteInfo, setNoteInfo] = useState("");
+  const note = {
+    id: uuid(),
+    title: noteTitle,
+    info: noteInfo,
+    currList: "", //currList will take listOptions item as value
+    currDest: "", //currDest will take destinationOptions item as value
+    isNotePinned: false,
+  };
   const listOptions = {
     pinned: "pinned",
     unpinned: "unpinned",
@@ -14,22 +22,12 @@ const NotesDataContextProvider = ({ children }) => {
     archive: "archive",
     bin: "bin",
   };
-  // currList used to take any of the following inputs:
-  // notes, pinned, archive, bin;
   const destinationOptions = {
     notes: "notes",
     reminders: "reminders",
     editLabels: "editLabels",
     archive: "archive",
     bin: "bin",
-  };
-  const note = {
-    id: uuid(),
-    title: noteTitle,
-    info: noteInfo,
-    currList: "",
-    currDest: "",
-    isNotePinned: false,
   };
 
   const [notes, setNotes] = useState([]);

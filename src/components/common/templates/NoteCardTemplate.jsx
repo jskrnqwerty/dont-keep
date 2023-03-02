@@ -89,7 +89,6 @@ const NoteCardTemplate = ({ notesItem, displayIn }) => {
             </Typography>
           )}
         </CardContent>
-        {/* The popup editable text window */}
         <OpenNoteWindow
           notesItem={notesItem}
           isNoteOpen={isNoteOpen}
