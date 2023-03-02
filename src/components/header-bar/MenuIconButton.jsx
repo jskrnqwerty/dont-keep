@@ -1,3 +1,7 @@
+/**
+ * @Button to open and close the permanent drawer
+ */
+
 import { IconButton, Tooltip } from "@mui/material";
 import { useContext } from "react";
 import { DrawerStateContext } from "../context/DrawerStateProvider";

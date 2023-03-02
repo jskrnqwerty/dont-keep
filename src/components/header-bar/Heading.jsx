@@ -1,10 +1,11 @@
 import { useLocation } from "react-router-dom";
 import { Typography, Box } from "@mui/material";
+import logo from "../images/dont-keep-icon.png";
 
 const Heading = () => {
   const location = useLocation();
   const headings = [
-    { pathname: "/", headingText: "Keep" },
+    { pathname: "/", headingText: "Don't Keep" },
     { pathname: "/reminders", headingText: "Reminders" },
     { pathname: "/edit-labels", headingText: "Edit labels" },
     { pathname: "/archive", headingText: "Archive" },
@@ -22,9 +23,9 @@ const Heading = () => {
           >
             {headingsItem.pathname === "/" && (
               <img
-                src="https://upload.wikimedia.org/wikipedia/commons/e/e5/Google_Keep_icon_%282020%29.svg"
+                src={logo}
                 height="38px"
-                alt="Keep"
+                alt="Don't Keep"
                 style={{ marginLeft: "5px" }}
               />
             )}
