@@ -7,11 +7,11 @@ import { DrawerStateContext } from "./context/DrawerStateProvider";
 import HeaderBar from "./header-bar/HeaderBar";
 import Drawer from "./drawer/Drawer";
 import HoverDrawer from "./drawer/HoverDrawer";
-import Notes from "./drawer-list-items/notes/Notes";
-import Reminders from "./drawer-list-items/reminders/Reminders";
-import EditLabels from "./drawer-list-items/edit-labels/EditLabels";
-import ArchivedNotes from "./drawer-list-items/archived-notes/ArchivedNotes";
-import DeletedNotes from "./drawer-list-items/deleted-notes/DeletedNotes";
+import Notes from "./display-area/notes/Notes";
+import Reminders from "./display-area/reminders/Reminders";
+import EditLabels from "./display-area/edit-labels/EditLabels";
+import ArchivedNotes from "./display-area/archived-notes/ArchivedNotes";
+import DeletedNotes from "./display-area/deleted-notes/DeletedNotes";
 
 const Home = () => {
   const { open } = useContext(DrawerStateContext);
