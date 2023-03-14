@@ -4,6 +4,34 @@
 
 > A note taking app for people who take notes and never come back to them again.
 ###### Created with [React.js](https://reactjs.org/ "reactjs.org"), [JavaScript](https://developer.mozilla.org/en-US/docs/Web/JavaScript/ "developer.mozilla.org"), [Material UI](https://mui.com/ "mui.com").
+---
+
+
+# App Demo
+
+### App interface tour
+![Interface Tour](./screenshots/01-app-tour.gif) 
+
+ ### Create note
+![Interface Tour](./screenshots/02-create-note.gif) 
+
+### Note action buttons
+![Interface Tour](./screenshots/03-note-actions.gif) 
+
+### Open and update note
+![Interface Tour](./screenshots/04-open-note-edit-note.gif) 
+
+### Pin, archive and delete note
+![Interface Tour](./screenshots/05-move-note.gif) 
+
+### Responsive grid
+![Interface Tour](./screenshots/06-responsive-grid.gif) 
+
+### Rearrange notes
+![Interface Tour](./screenshots/07-rearrange-notes.gif) 
+
+### Complete app demo
+![Dont Keep - Demo](./screenshots/08-complete-app-demo.gif)
 
 
 # Install dependencies
@@ -163,6 +191,11 @@ Archive note actions:
 | Delete note      | ✓           | ✓           | ✓      | ✗   |
 | Restore note     | ✗           | ✗           | ✗      | ✓   |
 | Delete Forever   | ✗           | ✗           | ✗      | ✓   |
+
+
+---
+# Life Cycle of a Note
+![Note Life Cycle Flowchart: https://imgur.com/ubYxqiD.png](https://imgur.com/ubYxqiD.png)
 
 ---
 # Extra Info
