@@ -15,7 +15,7 @@ const OpenNoteWindow = ({
   setIsNoteOpen,
   displayIn,
 }) => {
-  const { destinationOptions } = useContext(NotesDataContext);
+  const { notes, setNotes, destinationOptions } = useContext(NotesDataContext);
   const noteTitleRef = useRef(null);
   const noteInfoRef = useRef(null);
 
@@ -23,6 +23,17 @@ const OpenNoteWindow = ({
     setIsNoteOpen(false);
     notesItem.title = noteTitleRef.current.innerText;
     notesItem.info = noteInfoRef.current.innerText;
+
+    //update the note in notes[]
+    let _notes = [...notes];
+    _notes.map((item) => {
+      if (item.id === notesItem.id) {
+        item.title = notesItem.title;
+        item.info = notesItem.info;
+      }
+      return _notes;
+    });
+    setNotes(_notes);
   };
 
   return (
@@ -64,6 +75,9 @@ const OpenNoteWindow = ({
                 color: "black",
                 lineHeight: "1.8rem",
                 outline: "none",
+                wordwrap: "break-word",
+                whiteSpace: "pre-wrap",
+                wordBreak: "break-word",
               }}
             >
               {notesItem.title}
@@ -79,6 +93,9 @@ const OpenNoteWindow = ({
                 py: "0.2rem",
                 color: "black",
                 outline: "none",
+                wordwrap: "break-word",
+                whiteSpace: "pre-wrap",
+                wordBreak: "break-word",
               }}
             >
               {notesItem.info}
